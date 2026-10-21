@@ -1,0 +1,1268 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>One Pound</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Ten global weeknight and weekend dinners, each built on one pound of supermarket mince.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800;900&family=IBM+Plex+Mono:wght@400;600&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&display=swap">
+<style>/* Layout: a butcher's counter. Butcher-paper page, kraft bands for sections, a thermal scale ticket opening each recipe, stamp-ink labels, one butcher's-red accent. */
+:root{
+  --paper:#F2EADF;        /* butcher paper */
+  --paper-2:#E8DCC9;      /* deeper paper for panels */
+  --kraft:#C2A070;        /* kraft band */
+  --kraft-ink:#3B2C1C;    /* text on kraft */
+  --ink:#2A221E;          /* stamp-black text */
+  --ink-soft:#5F534A;
+  --stamp:#4A3E78;        /* USDA-style violet stamp ink */
+  --accent:#B5261C;       /* butcher's red */
+  --ticket:#FBF8F2;       /* thermal label stock */
+  --ticket-ink:#24201D;
+  --rule:rgba(42,34,30,.18);
+  --rule-strong:rgba(42,34,30,.55);
+  --chip-beef:#B5261C; --chip-pork:#B0607A; --chip-chicken:#9A7A1E;
+  --focus:#1F5FBF;
+  --bar:#2A221E; --bar-ink:#F2EADF;
+  --display:'Big Shoulders Display','Oswald','Arial Narrow',Impact,sans-serif;
+  --text:'Literata',Georgia,'Times New Roman',serif;
+  --mono:'IBM Plex Mono',ui-monospace,'SFMono-Regular',Menlo,Consolas,monospace;
+  --measure:36rem;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#1B1613; --paper-2:#251E19; --kraft:#6E5534; --kraft-ink:#F3E6D2;
+    --ink:#EEE4D6; --ink-soft:#B9AC9C; --stamp:#B3A8EC; --accent:#F0715F;
+    --ticket:#2A231E; --ticket-ink:#F1E8DB; --rule:rgba(238,228,214,.16); --rule-strong:rgba(238,228,214,.5);
+    --chip-beef:#F0715F; --chip-pork:#E39AB0; --chip-chicken:#D9B85A; --focus:#8DB4FF; --bar:#0E0B09; --bar-ink:#EEE4D6;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#1B1613; --paper-2:#251E19; --kraft:#6E5534; --kraft-ink:#F3E6D2;
+  --ink:#EEE4D6; --ink-soft:#B9AC9C; --stamp:#B3A8EC; --accent:#F0715F;
+  --ticket:#2A231E; --ticket-ink:#F1E8DB; --rule:rgba(238,228,214,.16); --rule-strong:rgba(238,228,214,.5);
+  --chip-beef:#F0715F; --chip-pork:#E39AB0; --chip-chicken:#D9B85A; --focus:#8DB4FF; --bar:#0E0B09; --bar-ink:#EEE4D6;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-padding-top:calc(4rem + env(safe-area-inset-top,0px))}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--text);font-size:17px;line-height:1.6;-webkit-text-size-adjust:100%}
+.wrap{max-width:70rem;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3,h4{text-wrap:balance;margin:0}
+a{color:inherit;text-decoration-color:var(--accent);text-underline-offset:.15em}
+a:hover{color:var(--accent)}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:2px}
+.num{font-variant-numeric:tabular-nums;text-align:right}
+.small{font-size:.86rem;color:var(--ink-soft);max-width:var(--measure)}
+.lede{max-width:var(--measure);color:var(--ink-soft);margin:.4rem 0 1.4rem}
+.skip{position:absolute;left:-999px;top:0}
+.skip:focus{left:max(16px,env(safe-area-inset-left,0px));top:calc(env(safe-area-inset-top,0px) + 8px);z-index:30;background:var(--ticket);padding:.5rem .8rem}
+sup.ref{font-family:var(--mono);font-size:.62em;line-height:0;margin-left:.08em}
+sup.ref a{text-decoration:none;color:var(--stamp)}
+sup.ref a:hover{text-decoration:underline}
+
+/* ---- control bar ---- */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bar)}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bar);color:var(--bar-ink)}
+.bar-in{max-width:70rem;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-block:.5rem;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wordmark{font-family:var(--display);font-weight:900;letter-spacing:.08em;font-size:1.25rem;text-decoration:none;color:var(--bar-ink);white-space:nowrap}
+.wordmark:hover{color:var(--bar-ink)}
+.toggle{display:flex;flex:none;border:1px solid color-mix(in srgb,var(--bar-ink) 45%,transparent);border-radius:3px;overflow:hidden}
+.toggle button{font-family:var(--mono);font-size:.82rem;font-weight:600;background:transparent;color:var(--bar-ink);border:0;padding:.4rem .7rem;cursor:pointer;letter-spacing:.02em;white-space:nowrap}
+.toggle button span{font-weight:400;opacity:.75;margin-left:.3rem}
+.toggle button[aria-pressed="true"]{background:var(--accent);color:#fff}
+.toggle button+button{border-left:1px solid color-mix(in srgb,var(--bar-ink) 45%,transparent)}
+@media (max-width:420px){.toggle button span{display:none}}
+
+/* ---- masthead ---- */
+.mast{background:var(--kraft);color:var(--kraft-ink);border-bottom:6px solid var(--ink);padding-block:3rem 2.4rem;position:relative;overflow:hidden}
+.mast .wrap{position:relative}
+.kicker{font-family:var(--mono);font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;margin:0 0 .6rem}
+.mast h1{font-family:var(--display);font-weight:900;line-height:.82;letter-spacing:-.01em;display:flex;flex-direction:column;margin:0 0 1.4rem}
+.h-one{font-size:clamp(3.4rem,12vw,7rem);color:var(--accent)}
+.h-pound{font-size:clamp(5.5rem,24vw,15rem)}
+.mast-ticket{position:absolute;right:max(16px,env(safe-area-inset-right,0px));top:.4rem;background:var(--ticket);color:var(--ticket-ink);font-family:var(--mono);padding:.7rem .9rem;display:grid;gap:.1rem;text-align:right;transform:rotate(4deg);box-shadow:0 2px 0 var(--rule-strong)}
+.mast-ticket span{font-size:.72rem;letter-spacing:.12em}
+.mast-ticket b{font-size:1.5rem;letter-spacing:.02em}
+.standfirst{max-width:var(--measure);font-size:1.1rem;margin:0 0 1rem}
+.countries{font-family:var(--mono);font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;max-width:44rem;margin:0}
+@media (max-width:640px){.mast-ticket{position:static;transform:rotate(-2deg);justify-self:start;width:max-content;margin:0 0 1.2rem;text-align:left}}
+
+/* ---- section heads ---- */
+main>section>h2,.contents h2{font-family:var(--display);font-weight:800;font-size:clamp(2rem,5vw,2.8rem);letter-spacing:.01em;text-transform:uppercase;line-height:1}
+section.contents,section.front,section.back{padding-block:3rem 0}
+section.front,section.back{border-top:2px solid var(--ink);margin-top:3rem}
+.prose{max-width:var(--measure)}
+.prose p{margin:0 0 1rem}
+
+/* ---- tables ---- */
+.tscroll{overflow-x:auto;margin:0 0 1rem;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;font-size:.92rem}
+th,td{text-align:left;vertical-align:top;padding:.55rem .6rem;border-bottom:1px solid var(--rule)}
+thead th{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--ink-soft);border-bottom:2px solid var(--ink)}
+tbody th{font-weight:600}
+.mx-c{display:block;font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);font-weight:400}
+.mx-n{font-family:var(--mono);color:var(--ink-soft);width:3rem}
+.matrix{min-width:44rem}
+.matrix tbody tr:hover{background:var(--paper-2)}
+.chip,.tierchip,.tag{font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;padding:.1rem .4rem;border-radius:2px;white-space:nowrap;display:inline-block}
+.chip{border:1.5px solid currentColor}
+.p-beef{color:var(--chip-beef)} .p-pork{color:var(--chip-pork)} .p-chicken{color:var(--chip-chicken)}
+.tierchip.weeknight{background:var(--ink);color:var(--paper)}
+.tierchip.weekend{border:1.5px dashed var(--stamp);color:var(--stamp)}
+.filters{display:flex;flex-wrap:wrap;gap:.8rem 1.2rem;align-items:flex-end;margin:0 0 1rem}
+.filters label{display:grid;gap:.25rem;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+.filters select{font-family:var(--text);font-size:1rem;color:var(--ink);background:var(--ticket);border:1.5px solid var(--rule-strong);border-radius:3px;padding:.4rem 2rem .4rem .6rem;min-width:9rem}
+.count{font-family:var(--mono);font-size:.8rem;margin:0 0 .45rem auto;color:var(--ink-soft)}
+.empty{font-style:italic;color:var(--ink-soft)}
+.grind{min-width:50rem}
+.grind td small,.grind th small{display:block;color:var(--ink-soft);font-size:.8rem}
+.grind td .num{display:block;text-align:left;font-family:var(--mono);font-weight:600}
+.league{min-width:40rem}
+.barw{display:inline-block;width:5rem;height:.55rem;background:var(--paper-2);margin-right:.6rem;vertical-align:middle;border-radius:1px}
+.lbar{display:block;height:100%;background:var(--accent)}
+.shelf{min-width:40rem}
+.shelf tr.once th::after{content:"once";font-family:var(--mono);font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;margin-left:.5rem;color:var(--accent);border:1px solid var(--accent);padding:0 .3rem;border-radius:2px;vertical-align:.1em}
+
+/* ---- browning ---- */
+.steps{max-width:var(--measure);margin:0 0 1rem;padding:0;list-style:none;counter-reset:s}
+.steps li{counter-increment:s;position:relative;padding:0 0 .9rem 2.6rem}
+.steps li::before{content:counter(s);position:absolute;left:0;top:-.15rem;font-family:var(--display);font-weight:800;font-size:1.7rem;color:var(--accent)}
+
+/* ---- recipe ---- */
+article.recipe{border-top:6px solid var(--ink);margin-top:4rem;padding-top:2rem}
+.r-head{margin:0 0 1.8rem}
+.place{font-family:var(--mono);font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:0 0 .4rem;display:flex;gap:.5rem;flex-wrap:wrap}
+.place .dot{color:var(--ink-soft)}
+article.recipe h2{font-family:var(--display);font-weight:800;text-transform:uppercase;font-size:clamp(2.6rem,9vw,5rem);line-height:.9;letter-spacing:.005em}
+.local{font-size:1.35rem;margin:.5rem 0 .2rem}
+.local [lang="ar"],.local [lang="fa"],.local [lang="ur"]{font-size:1.15em}
+.roman{font-style:italic;color:var(--ink-soft);font-size:1.05rem;margin-left:.4rem}
+.gloss{color:var(--ink-soft);margin:0;max-width:var(--measure)}
+.cols{display:grid;grid-template-columns:minmax(0,22rem) minmax(0,1fr);gap:2.6rem;align-items:start}
+.side,.main{min-width:0}
+.main{display:grid;gap:1.8rem}
+.headnote p{margin:0 0 .9rem;max-width:var(--measure)}
+.checked{font-size:.88rem;color:var(--ink-soft);border-left:3px solid var(--stamp);padding-left:.8rem}
+.checked b{color:var(--stamp);font-family:var(--mono);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase}
+.side h3,.method h3{font-family:var(--display);font-weight:800;text-transform:uppercase;font-size:1.5rem;letter-spacing:.02em;margin:0 0 .5rem}
+.side>section{margin-top:1.8rem}
+.shop h4{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin:1rem 0 .2rem;font-weight:600}
+.shop ul{list-style:none;margin:0;padding:0;font-size:.92rem}
+.shop li{display:flex;justify-content:space-between;gap:.7rem;align-items:baseline;padding:.34rem 0;border-bottom:1px dotted var(--rule-strong);line-height:1.4}
+.shop .it{min-width:0}
+.shop .q{font-weight:600;color:var(--accent);font-variant-numeric:tabular-nums}
+.shop .m{font-family:var(--mono);font-size:.78rem;color:var(--ink-soft);white-space:nowrap}
+.pr{font-family:var(--mono);font-size:.76rem;white-space:nowrap;display:inline-flex;gap:.35rem;align-items:baseline;font-variant-numeric:tabular-nums;color:var(--ink-soft)}
+.pr.opt{font-style:italic}
+abbr.src{font-family:var(--mono);font-size:.62rem;letter-spacing:.06em;text-decoration:none;border:1px solid currentColor;border-radius:2px;padding:0 .22rem;cursor:help}
+.s-bls{color:var(--stamp)} .s-usda{color:var(--chip-chicken)} .s-est{color:var(--ink-soft);border-style:dashed!important}
+.basket{display:flex;flex-wrap:wrap;gap:.2rem .7rem;align-items:baseline;margin:.9rem 0 0;padding:.7rem .8rem;background:var(--paper-2);border-top:3px solid var(--ink)}
+.basket span:first-child{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase}
+.basket strong{font-family:var(--display);font-weight:800;font-size:1.6rem;line-height:1}
+.basket .ph{font-size:.82rem;color:var(--ink-soft);flex-basis:100%}
+.subs p{font-size:.92rem;margin:0 0 .65rem;color:var(--ink-soft)}
+.subs b{color:var(--ink)}
+.method ol{margin:0;padding:0;list-style:none;counter-reset:m;max-width:var(--measure)}
+.method li{counter-increment:m;position:relative;padding:0 0 1.05rem 3rem}
+.method li::before{content:counter(m);position:absolute;left:0;top:-.2rem;width:2.1rem;height:2.1rem;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:1.25rem;color:var(--paper);background:var(--ink);border-radius:50%}
+.tech{font-size:.88rem;color:var(--ink-soft);font-style:italic;margin:0 0 1rem}
+.notes{display:grid;gap:0;margin:0;max-width:var(--measure);border-top:2px solid var(--ink)}
+.notes>div{padding:.75rem 0;border-bottom:1px solid var(--rule)}
+.notes dt{font-family:var(--mono);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;margin:0 0 .25rem;display:flex;gap:.6rem;align-items:center;flex-wrap:wrap}
+.notes dd{margin:0;font-size:.95rem}
+.n-safety dt{color:var(--accent)}
+.n-scale .tag{border:1px solid var(--rule-strong);color:var(--ink-soft);font-weight:400}
+.n-scale.changes .tag{border-color:var(--accent);color:var(--accent)}
+body.two .n-scale{background:var(--paper-2);padding-inline:.8rem;border-left:4px solid var(--accent)}
+@media (max-width:820px){.cols{grid-template-columns:minmax(0,1fr);gap:1.6rem}}
+
+/* ---- scale ticket ---- */
+.ticket{position:relative;background:var(--ticket);color:var(--ticket-ink);font-family:var(--mono);font-size:.78rem;padding:0 .95rem .8rem;box-shadow:0 1px 0 var(--rule-strong),0 0 0 1px var(--rule);
+  -webkit-mask:linear-gradient(#000,#000) top/100% calc(100% - 6px) no-repeat,radial-gradient(circle 4px at 7px 100%,transparent 98%,#000) bottom/14px 6px repeat-x;
+  mask:linear-gradient(#000,#000) top/100% calc(100% - 6px) no-repeat,radial-gradient(circle 4px at 7px 100%,transparent 98%,#000) bottom/14px 6px repeat-x;
+  overflow:hidden}
+.t-head{display:flex;justify-content:space-between;margin:0 -.95rem .6rem;padding:.4rem .95rem;background:var(--ticket-ink);color:var(--ticket);font-weight:600;letter-spacing:.14em;font-size:.72rem}
+.t-grid{display:grid;grid-template-columns:1fr 1fr;gap:.35rem .8rem;margin:0}
+.t-row{display:grid;gap:.05rem;min-width:0}
+.t-wide{grid-column:1/-1}
+.t-row dt{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;opacity:.7}
+.t-row dd{margin:0;font-weight:600;letter-spacing:.02em;overflow-wrap:anywhere}
+.t-wt dd{font-size:1.2rem;line-height:1.1}
+.t-wt small{font-size:.72rem;font-weight:400;display:block}
+.t-price{display:flex;justify-content:space-between;align-items:baseline;border-top:1.5px dashed var(--ticket-ink);border-bottom:1.5px dashed var(--ticket-ink);margin:.7rem 0 .55rem;padding:.35rem 0}
+.t-price span{font-size:.66rem;letter-spacing:.14em}
+.t-price strong{font-size:1.7rem;color:var(--accent);letter-spacing:-.01em}
+.t-foot{display:flex;flex-direction:column;align-items:flex-start;gap:.15rem}
+.bars{display:flex;height:2.1rem;align-items:stretch;gap:0;width:100%;max-width:15rem}
+.bars i,.bars b{display:block;width:calc(var(--w)*1.6px);flex:none}
+.bars i{background:var(--ticket-ink)}
+.bars b{background:transparent;margin-right:1px}
+.ean{font-size:.68rem;letter-spacing:.18em}
+.t-stamp{position:absolute;right:.7rem;bottom:1rem;font-family:var(--display);font-weight:900;font-size:1.3rem;letter-spacing:.12em;color:var(--stamp);border:3px solid var(--stamp);border-radius:4px;padding:.05rem .45rem;transform:rotate(-11deg);opacity:.85;mix-blend-mode:multiply}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .t-stamp{mix-blend-mode:normal}}
+:root[data-theme="dark"] .t-stamp{mix-blend-mode:normal}
+
+/* ---- back matter ---- */
+.method-notes{max-width:var(--measure);margin:1.4rem 0 0}
+.method-notes dt{font-family:var(--display);font-weight:800;text-transform:uppercase;font-size:1.15rem;margin-top:1.2rem;display:flex;gap:.5rem;align-items:center}
+.method-notes dd{margin:.25rem 0 0;color:var(--ink-soft);font-size:.94rem}
+.clock{max-width:var(--measure);padding-left:1.1rem}
+.clock li{margin:0 0 .7rem}
+.clock .mx-c{display:inline;margin-left:.2rem}
+.sources{max-width:48rem;font-size:.88rem;padding-left:1.8rem;font-variant-numeric:tabular-nums}
+.sources li{margin:0 0 .4rem;overflow-wrap:anywhere}
+.sources li:target{background:var(--paper-2)}
+.foot{margin:4rem 0 3rem;padding-top:1.2rem;border-top:2px solid var(--ink);font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;color:var(--ink-soft);text-transform:uppercase}
+.foot i{text-transform:none;letter-spacing:0;font-family:var(--text)}
+
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+
+/* ---- print ---- */
+@media print{
+  :root,:root[data-theme="dark"]{--paper:#fff;--paper-2:#f1f1f1;--kraft:#fff;--kraft-ink:#000;--ink:#000;--ink-soft:#333;--stamp:#000;--accent:#000;--ticket:#fff;--ticket-ink:#000;--rule:#bbb;--rule-strong:#666;--chip-beef:#000;--chip-pork:#000;--chip-chicken:#000;color-scheme:light}
+  body{font-size:10.5pt;background:#fff}
+  body::before,.bar,.filters,.skip,.count,.empty{display:none!important}
+  .mast{border-bottom:2px solid #000;padding-block:1rem}
+  .mast-ticket{box-shadow:none;border:1px solid #000}
+  article.recipe{break-before:page;margin-top:0;border-top:3px solid #000}
+  .ticket{-webkit-mask:none;mask:none;border:1px solid #000;box-shadow:none}
+  .t-head{background:#fff;color:#000;border-bottom:1px solid #000}
+  .t-stamp{mix-blend-mode:normal}
+  .method li::before{background:#fff;color:#000;border:1.5px solid #000}
+  .cols{grid-template-columns:minmax(0,19rem) minmax(0,1fr);gap:1.4rem}
+  .tscroll{overflow:visible}
+  .matrix,.grind,.league,.shelf{min-width:0}
+  section.back,section.front{break-inside:auto}
+  a{text-decoration:none}
+  sup.ref a{color:#000}
+  .tierchip.weeknight{background:#fff;color:#000;border:1px solid #000}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#contents">Skip to contents</a>
+<div class="bar" role="region" aria-label="Book controls">
+  <div class="bar-in">
+    <a class="wordmark" href="#top">ONE POUND</a>
+    <div class="toggle" role="group" aria-label="Quantity">
+      <button type="button" id="w1" aria-pressed="true" data-w="1">1 lb <span>serves 4</span></button>
+      <button type="button" id="w2" aria-pressed="false" data-w="2">2 lb <span>serves 8</span></button>
+    </div>
+  </div>
+</div>
+
+<header class="mast" id="top">
+  <div class="wrap">
+    <p class="kicker">A cookbook from the mince counter</p>
+    <h1><span class="h-one">ONE</span><span class="h-pound">POUND</span></h1>
+    <div class="mast-ticket" aria-hidden="true"><span>NET WT</span><b>1.00 LB</b><span>454 g</span></div>
+    <p class="standfirst">Ten dinners from ten countries, each built on a single pound of supermarket mince and each something people there cook at home and call by this name. Seven are weeknight dishes, on the table in 40 minutes or less; three want a slower Saturday.</p>
+    <p class="countries">Mexico · Chile · Poland · Egypt · South Africa · Iran · Pakistan · China · Vietnam · Japan</p>
+  </div>
+</header>
+
+<main class="wrap">
+
+<section class="contents" id="contents" aria-labelledby="contents-h">
+  <h2 id="contents-h">The counter</h2>
+  <p class="lede">Every recipe, against its mince, its pan and its clock. Filter to what you have; each row goes to its recipe. Times are minutes.</p>
+  <form class="filters" id="filters" aria-label="Filter recipes">
+    <label for="f-protein">Protein
+      <select id="f-protein"><option value="">All</option><option>Beef</option><option>Pork</option><option>Chicken</option></select></label>
+    <label for="f-tier">When
+      <select id="f-tier"><option value="">Any night</option><option>Weeknight</option><option>Weekend</option></select></label>
+    <label for="f-vessel">Vessel
+      <select id="f-vessel"><option value="">Any</option><option value="skillet">Skillet</option><option value="dutch">Dutch oven</option><option value="tray">Sheet tray</option><option value="dish">Baking dish</option></select></label>
+    <p class="count" id="count" aria-live="polite">10 of 10 recipes</p>
+  </form>
+  <div class="tscroll">
+  <table class="matrix" id="matrix">
+    <thead><tr><th scope="col" class="mx-n">No.</th><th scope="col">Dish</th><th scope="col">Protein</th><th scope="col">Vessel</th><th scope="col" class="num">Active</th><th scope="col" class="num">Total</th><th scope="col">When</th><th scope="col" class="num">A head</th></tr></thead>
+    <tbody><tr data-protein="Beef" data-tier="Weeknight" data-vessel="skillet">
+<td class="mx-n">01</td>
+<th scope="row"><a href="#mexico">Picadillo</a><span class="mx-c">Mexico</span></th>
+<td><span class="chip p-beef">Beef</span></td>
+<td>Skillet</td>
+<td class="num">20</td><td class="num">40</td>
+<td><span class="tierchip weeknight">Weeknight</span></td>
+<td class="num">$3.23</td></tr>
+<tr data-protein="Beef" data-tier="Weekend" data-vessel="dish">
+<td class="mx-n">02</td>
+<th scope="row"><a href="#chile">Pastel de choclo</a><span class="mx-c">Chile</span></th>
+<td><span class="chip p-beef">Beef</span></td>
+<td>Baking dish</td>
+<td class="num">45</td><td class="num">90</td>
+<td><span class="tierchip weekend">Weekend</span></td>
+<td class="num">$3.83</td></tr>
+<tr data-protein="Pork" data-tier="Weeknight" data-vessel="skillet">
+<td class="mx-n">03</td>
+<th scope="row"><a href="#poland">Kotlety mielone</a><span class="mx-c">Poland</span></th>
+<td><span class="chip p-pork">Pork</span></td>
+<td>Skillet</td>
+<td class="num">30</td><td class="num">40</td>
+<td><span class="tierchip weeknight">Weeknight</span></td>
+<td class="num">$2.58</td></tr>
+<tr data-protein="Beef" data-tier="Weeknight" data-vessel="tray">
+<td class="mx-n">04</td>
+<th scope="row"><a href="#egypt">Hawawshi</a><span class="mx-c">Egypt</span></th>
+<td><span class="chip p-beef">Beef</span></td>
+<td>Sheet tray</td>
+<td class="num">20</td><td class="num">40</td>
+<td><span class="tierchip weeknight">Weeknight</span></td>
+<td class="num">$3.79</td></tr>
+<tr data-protein="Beef" data-tier="Weekend" data-vessel="skillet">
+<td class="mx-n">05</td>
+<th scope="row"><a href="#southafrica">Bobotie</a><span class="mx-c">South Africa</span></th>
+<td><span class="chip p-beef">Beef</span></td>
+<td>Skillet, into the oven</td>
+<td class="num">25</td><td class="num">70</td>
+<td><span class="tierchip weekend">Weekend</span></td>
+<td class="num">$2.81</td></tr>
+<tr data-protein="Beef" data-tier="Weeknight" data-vessel="skillet">
+<td class="mx-n">06</td>
+<th scope="row"><a href="#iran">Kotlet</a><span class="mx-c">Iran</span></th>
+<td><span class="chip p-beef">Beef</span></td>
+<td>Skillet</td>
+<td class="num">35</td><td class="num">40</td>
+<td><span class="tierchip weeknight">Weeknight</span></td>
+<td class="num">$3.31</td></tr>
+<tr data-protein="Beef" data-tier="Weeknight" data-vessel="dutch">
+<td class="mx-n">07</td>
+<th scope="row"><a href="#pakistan">Qeema matar</a><span class="mx-c">Pakistan</span></th>
+<td><span class="chip p-beef">Beef</span></td>
+<td>Dutch oven</td>
+<td class="num">25</td><td class="num">40</td>
+<td><span class="tierchip weeknight">Weeknight</span></td>
+<td class="num">$3.12</td></tr>
+<tr data-protein="Pork" data-tier="Weekend" data-vessel="dutch">
+<td class="mx-n">08</td>
+<th scope="row"><a href="#china">Clear-braised lion's head</a><span class="mx-c">China</span></th>
+<td><span class="chip p-pork">Pork</span></td>
+<td>Dutch oven</td>
+<td class="num">25</td><td class="num">90</td>
+<td><span class="tierchip weekend">Weekend</span></td>
+<td class="num">$2.53</td></tr>
+<tr data-protein="Pork" data-tier="Weeknight" data-vessel="dutch">
+<td class="mx-n">09</td>
+<th scope="row"><a href="#vietnam">Xíu mại</a><span class="mx-c">Vietnam</span></th>
+<td><span class="chip p-pork">Pork</span></td>
+<td>Dutch oven</td>
+<td class="num">25</td><td class="num">40</td>
+<td><span class="tierchip weeknight">Weeknight</span></td>
+<td class="num">$3.06</td></tr>
+<tr data-protein="Chicken" data-tier="Weeknight" data-vessel="skillet">
+<td class="mx-n">10</td>
+<th scope="row"><a href="#japan">Tori soboro don</a><span class="mx-c">Japan</span></th>
+<td><span class="chip p-chicken">Chicken</span></td>
+<td>Skillet</td>
+<td class="num">20</td><td class="num">35</td>
+<td><span class="tierchip weeknight">Weeknight</span></td>
+<td class="num">$1.92</td></tr></tbody>
+  </table>
+  </div>
+  <p class="empty" id="empty" hidden>Nothing matches. Clear a filter to see more.</p>
+</section>
+
+<section class="front" aria-labelledby="essay-h">
+  <h2 id="essay-h">Mince on a weeknight</h2>
+  <div class="prose"><p>Mince is what much of the world cooks when dinner has to happen on a Tuesday. It browns in minutes, takes seasoning all the way through, and stretches. A pound feeds four when it shares the pan with potato, peas, bread or corn, which is how most of the dishes in this book use it.</p><p>Before machines, mincing was knife work.<sup class="ref"><a href="#src-8" aria-label="Source 8">8</a></sup> The hand-cranked grinder that forces meat through a perforated plate is credited to the German inventor Karl Drais in the nineteenth century, and electric grinders followed as power reached kitchens.<sup class="ref"><a href="#src-8" aria-label="Source 8">8</a></sup> The older work survives in the words. <i>Picadillo</i> is the little chopped thing,<sup class="ref"><a href="#src-9" aria-label="Source 9">9</a></sup> and <i>kotlet</i> belongs to the cutlet family, which started out as a rib.<sup class="ref"><a href="#src-15" aria-label="Source 15">15</a></sup></p><p>In the United States ground beef is now close to half of all beef eaten. Derrell Peel of Oklahoma State University put ground beef at 28.6 lb a head in 2025, out of 59.8 lb of beef in all (48%), the highest share since at least 2003.<sup class="ref"><a href="#src-6" aria-label="Source 6">6</a></sup> The tray itself is regulated: anything sold as ground beef can be at most 30% fat, with no added water, binders or other meats, and the lean-and-fat percentage was put on labels because shoppers could not judge leanness from the name of the cut.<sup class="ref"><a href="#src-7" aria-label="Source 7">7</a></sup></p><p>Every dish here starts from that tray. They come from ten countries, all of them cooked at home there, and seven of them are on the table in 40 minutes or less.</p></div>
+</section>
+
+<section class="front" id="grind" aria-labelledby="grind-h">
+  <h2 id="grind-h">Grind and fat</h2>
+  <p class="lede">What each supermarket pack does in the pan, and when to keep the fat.</p>
+  <div class="tscroll">
+  <table class="grind">
+    <thead><tr><th scope="col">Pack</th><th scope="col">Fat in 1 lb raw</th><th scope="col">In the pan</th><th scope="col">What to do</th><th scope="col">Used in</th></tr></thead>
+    <tbody><tr><th scope="row">Ground beef 80/20</th><td><span class="num">91 g</span><small>about 7 tbsp melted</small></td><td>Renders a visible pool and browns hardest.</td><td>Keep the fat where it carries spice or soaks into bread. Spoon off down to a film anywhere else.</td><td><a href="#mexico">Picadillo</a>, <a href="#egypt">Hawawshi</a>, <a href="#pakistan">Qeema matar</a></td></tr>
+<tr><th scope="row">Ground beef 85/15</th><td><span class="num">68 g</span><small>about 5 tbsp melted</small></td><td>A little fat, rarely enough to pour off.</td><td>Leave it in. Spoon off only if more than a tablespoon pools.</td><td><a href="#chile">Pastel de choclo</a>, <a href="#southafrica">Bobotie</a>, <a href="#iran">Kotlet</a></td></tr>
+<tr><th scope="row">Ground beef 90/10</th><td><span class="num">45 g</span><small>about 3 tbsp melted</small></td><td>Browns quickly and dries if pushed.</td><td>Add 1 tbsp extra oil and take it off the heat sooner.</td><td><small>Substitute only</small></td></tr>
+<tr><th scope="row">Ground turkey 93/7</th><td><span class="num">32 g</span><small>about 2 tbsp melted</small></td><td>Pale, wet at first, dry at the end.</td><td>Extra oil, and keep it moving. Listed as a substitute only.</td><td><small>Substitute only</small></td></tr>
+<tr><th scope="row">Ground pork</th><td><small>Check the label</small></td><td>US packs often print no lean figure. It is usually fatty and soft.</td><td>For lion's head, pick the fattiest pack. In meatballs and patties the fat stays inside, which is the point.</td><td><a href="#poland">Kotlety mielone</a>, <a href="#china">Clear-braised lion's head</a>, <a href="#vietnam">Xíu mại</a></td></tr>
+<tr><th scope="row">Ground chicken</th><td><small>Check the label</small></td><td>Packs made from breast alone are labelled up to 99% lean and cook dry.</td><td>Choose a pack that includes thigh meat; the label lean figure will be lower than 99%.</td><td><a href="#japan">Tori soboro don</a></td></tr></tbody>
+  </table>
+  </div>
+  <p class="small">The fat figure is what the pack contains raw, worked out from the label ratio on 454 g. Fat weighs about 13 g a tablespoon, so the second figure is what it would come to melted; a good part of it stays in the meat. Pour fat into a cup to cool and bin it, never down the sink.</p>
+</section>
+
+<section class="front browning" id="browning" aria-labelledby="browning-h">
+  <h2 id="browning-h">Browning a pound</h2>
+  <p class="lede">The one technique six of these recipes lean on. Done once here, so each recipe can point back.</p>
+  <ol class="steps"><li><b>Start cold and dry.</b> Take the mince out of the fridge just before you cook. Tip it out of the tray and pat the surface with kitchen paper. Water on the meat is steam in the pan.</li><li><b>Heat the pan first.</b> Put the skillet over medium-high heat for 2 minutes, then add 1 tbsp oil and wait until it shimmers. In the Dutch oven, give it 3 minutes; enamelled cast iron is slow to heat and then holds it.</li><li><b>Lay it in as a slab.</b> Put the pound in as one flat piece and press it 2 cm (¾ in) thick. Leave it alone for 4 minutes. You want a sharp, steady sizzle and a dark brown underside.</li><li><b>Turn and break.</b> Turn it in sections with a spatula and give the second side 2 minutes, then break it up to the size the recipe wants. It is browned when the fat runs clear, the sizzle sharpens again and the edges catch.</li><li><b>Salt at the end.</b> Salt the meat once it has browned. Salt added at the start draws out water and slows the crust.</li><li><b>If water pools.</b> A simmering puddle means the pan is crowded or not hot enough. Keep the heat up and wait: it boils off in two or three minutes, the sizzle returns, and browning starts.</li><li><b>Two pounds.</b> Brown 2 lb in two batches in a standard skillet. Piled in at once it steams grey and takes twice as long.</li></ol>
+  <p class="small">Browning is for flavour. Doneness is a thermometer reading: 160°F / 71°C for ground beef, pork and lamb, and 165°F / 74°C for ground chicken and turkey.<sup class="ref"><a href="#src-1" aria-label="Source 1">1</a></sup> Raw mince keeps 1–2 days in the fridge and 3–4 months in the freezer.<sup class="ref"><a href="#src-2" aria-label="Source 2">2</a></sup></p>
+</section>
+
+
+<article class="recipe" id="mexico" data-protein="Beef" data-tier="Weeknight" data-vessel="skillet">
+  <header class="r-head">
+    <p class="place"><span>Mexico</span><span class="dot">·</span><span>Americas</span></p>
+    <h2>Picadillo</h2>
+    <p class="local"><bdi lang="es">Picadillo</bdi></p>
+    <p class="gloss">Mince cooked down with tomato, potato and carrot</p>
+  </header>
+  <div class="cols">
+    <aside class="side" aria-label="Ticket, shopping and substitutions">
+      
+<div class="ticket" role="group" aria-label="Scale ticket for Picadillo">
+  <div class="t-head"><span>ONE POUND</span><span>COUNTER 01</span></div>
+  <dl class="t-grid">
+    <div class="t-row t-wide"><dt>Product</dt><dd>GROUND BEEF 80/20</dd></div>
+    <div class="t-row t-wide"><dt>For</dt><dd>PICADILLO · MEXICO</dd></div>
+    <div class="t-row t-wt"><dt>Net wt</dt><dd><span class="w1">1.00 LB</span><span class="w2" hidden>2.00 LB</span> <small><span class="w1">454 g</span><span class="w2" hidden>907 g</span></small></dd></div>
+    <div class="t-row"><dt>Serves</dt><dd><span class="w1">4</span><span class="w2" hidden>8</span></dd></div>
+    <div class="t-row"><dt>Vessel</dt><dd>SKILLET</dd></div>
+    <div class="t-row"><dt>Time</dt><dd>20 ACT · 40 TOT</dd></div>
+    <div class="t-row"><dt>Cook to</dt><dd>160°F · 71°C</dd></div>
+    <div class="t-row"><dt>Heat</dt><dd>MILD–MEDIUM</dd></div>
+  </dl>
+  <div class="t-price"><span>PRICE / HEAD</span><strong>$3.23</strong></div>
+  <div class="t-foot"><span class="bars" aria-hidden="true"><i style="--w:2"></i><b style="--w:2"></b><i style="--w:2"></i><b style="--w:1"></b><i style="--w:2"></i><b style="--w:1"></b><i style="--w:2"></i><b style="--w:2"></b><i style="--w:2"></i><b style="--w:1"></b><i style="--w:2"></i><b style="--w:1"></b><i style="--w:1"></i><b style="--w:2"></b><i style="--w:2"></i><b style="--w:1"></b><i style="--w:3"></i><b style="--w:1"></b><i style="--w:3"></i><b style="--w:2"></b><i style="--w:2"></i><b style="--w:1"></b><i style="--w:3"></i><b style="--w:1"></b><i style="--w:3"></i><b style="--w:1"></b><i style="--w:1"></i><b style="--w:1"></b><i style="--w:1"></i><b style="--w:1"></b><i style="--w:2"></i><b style="--w:2"></b><i style="--w:3"></i><b style="--w:1"></b><i style="--w:3"></i><b style="--w:2"></b><i style="--w:2"></i><b style="--w:2"></b><i style="--w:2"></i><b style="--w:2"></b><i style="--w:1"></i><b style="--w:1"></b><i style="--w:2"></i><b style="--w:1"></b></span><span class="ean">0 45400 46559 6</span></div>
+  <span class="t-stamp" aria-hidden="true">WEEKNIGHT</span>
+</div>
+      <section class="shop">
+        <h3>Shopping</h3>
+        <h4>Fresh</h4>
+        <ul><li><span class="it"><span class="q" data-a="1 lb" data-b="2 lb">1 lb</span> ground beef, 80/20 <span class="m" data-a="454 g" data-b="907 g">454 g</span></span><span class="pr"><span class="c1">$6.79</span><span class="c2" hidden>$13.58</span><abbr class="src s-bls" title="Ground beef, 100% beef (used for 80/20)">BLS</abbr></span></li>
+<li><span class="it"><span class="q" data-a="2 medium" data-b="4 medium">2 medium</span> potatoes, Yukon Gold or russet <span class="m" data-a="300 g" data-b="600 g">300 g</span></span><span class="pr"><span class="c1">$0.65</span><span class="c2" hidden>$1.31</span><abbr class="src s-bls" title="Potatoes, white">BLS</abbr></span></li>
+<li><span class="it"><span class="q" data-a="2" data-b="4">2</span> carrots <span class="m" data-a="150 g" data-b="300 g">150 g</span></span><span class="pr"><span class="c1">$0.43</span><span class="c2" hidden>$0.85</span><abbr class="src s-est" title="Carrots, $1.29 a 1 lb bag, about 6 to the bag">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="3" data-b="6">3</span> ripe tomatoes <span class="m" data-a="450 g" data-b="900 g">450 g</span></span><span class="pr"><span class="c1">$1.98</span><span class="c2" hidden>$3.95</span><abbr class="src s-bls" title="Tomatoes, field grown">BLS</abbr></span></li>
+<li><span class="it"><span class="q" data-a="½" data-b="1">½</span> white onion <span class="m" data-a="110 g" data-b="220 g">110 g</span></span><span class="pr"><span class="c1">$0.36</span><span class="c2" hidden>$0.72</span><abbr class="src s-est" title="Yellow or white onions, loose">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="2" data-b="4">2</span> garlic cloves</span><span class="pr"><span class="c1">$0.16</span><span class="c2" hidden>$0.32</span><abbr class="src s-est" title="Garlic, $0.75 a head of about 10 cloves">EST</abbr></span></li>
+<li><span class="it">coriander (cilantro), a handful</span><span class="pr"><span class="c1">$0.49</span><span class="c2" hidden>$0.99</span><abbr class="src s-est" title="Coriander (cilantro), a bunch">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="12" data-b="24">12</span> corn tortillas or tostadas</span><span class="pr"><span class="c1">$1.20</span><span class="c2" hidden>$2.39</span><abbr class="src s-est" title="Corn tortillas, 30-pack">EST</abbr></span></li></ul>
+        <h4>Pantry</h4>
+        <ul><li><span class="it"><span class="q" data-a="¾ cup" data-b="1½ cups">¾ cup</span> frozen peas <span class="m" data-a="100 g" data-b="200 g">100 g</span></span><span class="pr"><span class="c1">$0.47</span><span class="c2" hidden>$0.93</span><abbr class="src s-est" title="Frozen peas, 16 oz bag (about 3.2 cups)">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="1" data-b="2">1</span> <span data-a="chipotle in adobo, plus 1 tsp of the sauce" data-b="chipotles in adobo, plus 2 tsp of the sauce">chipotle in adobo, plus 1 tsp of the sauce</span></span><span class="pr"><span class="c1">$0.33</span><span class="c2" hidden>$0.65</span><abbr class="src s-est" title="Chipotles in adobo, 7 oz tin of about 7 chillies">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="¾ cup" data-b="1½ cups">¾ cup</span> water <span class="m" data-a="175 ml" data-b="350 ml">175 ml</span></span></li>
+<li><span class="it"><span class="q" data-a="1 tbsp" data-b="2 tbsp">1 tbsp</span> vegetable oil <span class="m" data-a="15 ml" data-b="30 ml">15 ml</span></span><span class="pr"><span class="c1">$0.05</span><span class="c2" hidden>$0.10</span><abbr class="src s-est" title="Vegetable oil, 48 fl oz">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="1¼ tsp" data-b="2½ tsp">1¼ tsp</span> salt</span><span class="pr"><span class="c1">$0.01</span><span class="c2" hidden>$0.03</span><abbr class="src s-est" title="Table salt">EST</abbr></span></li></ul>
+        <p class="basket"><span>Basket at natural yield</span> <strong><span class="c1">$12.92</span><span class="c2" hidden>$25.84</span></strong> <span class="ph">$3.23 a head · 73% of it at official average prices</span></p>
+      </section>
+      <section class="subs">
+        <h3>If you don't have it</h3>
+        <p><b>Chipotle.</b> Leave it out and you have the plain picadillo many families cook. Smoked paprika adds smoke without the sweet-sour adobo, so it moves the dish further than leaving the chile out does.</p><p><b>Half pork.</b> Half ground pork, half beef is a common mix and barely changes the dish; it is a little sweeter and softer.</p><p><b>85/15 or leaner beef.</b> Works, and leaves almost no fat in the pan. Add a second tablespoon of oil so the onion softens properly.</p><p><b>Tinned tomatoes.</b> One 14.5 oz (411 g) tin of diced tomatoes in place of fresh. Out of season it is often better, slightly sharper.</p>
+      </section>
+    </aside>
+    <div class="main">
+      <div class="headnote"><p>The name comes from <i>picado</i>, chopped. The Real Academia Española gives <i>picadillo</i> as its diminutive and defines it as any dish of finely cut ingredients.<sup class="ref"><a href="#src-9" aria-label="Source 9">9</a></sup> In Mexico the everyday version is mince simmered with tomato, potato and carrot, finished with peas. It goes onto tostadas, into tacos or beside white rice, and what is left fills chiles or croquetas later in the week.<sup class="ref"><a href="#src-10" aria-label="Source 10">10</a></sup></p><p>This follows the house style Grupo Animal publishes as a recipe for the day-to-day, with one chipotle blended into the tomato for warmth.<sup class="ref"><a href="#src-10" aria-label="Source 10">10</a></sup> Plenty of cooks leave the chile out altogether, so the mild portion below loses nothing essential.</p><p class="checked"><b>Checked.</b> No origin story is attached to this dish and none is told here. Grupo Animal uses beef and says pork works too.<sup class="ref"><a href="#src-10" aria-label="Source 10">10</a></sup></p></div>
+      <section class="method">
+        <h3>Method</h3>
+        
+        <ol><li>Cut the potatoes and carrots into 1 cm (⅜ in) cubes. Small is what lets them cook in the sauce. Chop the onion finely and mince the garlic. Grate the tomatoes on the coarse side of a box grater into a bowl and throw away the skins. Mince the chipotle and keep it separate with its spoon of sauce.</li><li>Brown the beef in the oil in the skillet over medium-high heat, following <a href="#browning">Browning a pound</a>, about 7 minutes, until the pink has gone and the bits on the base of the pan catch brown. Leave the fat in.</li><li>Add the onion and garlic and cook 3 minutes, until the onion is glassy at the edges.</li><li>Add the potatoes, carrots, grated tomato, salt and water. Bring to a bubble, then lower to a steady simmer. Cook uncovered for 15–18 minutes, stirring every few minutes and adding a splash of water if the base catches, until a cube of potato crushes easily against the side of the pan.</li><li>Stir in the peas and the chipotle with its sauce and cook 3 minutes more. The picadillo should be moist without being soupy: a spoon dragged across the pan leaves a trail that slowly closes.</li><li>Taste for salt. Serve on warm tortillas or tostadas, with coriander over the top.</li></ol>
+      </section>
+      <dl class="notes">
+        <div class="n-safety"><dt>Safety</dt><dd>Cook ground beef to at least <b>160°F / 71°C</b> in the thickest part, read on an instant-read thermometer.<sup class="ref"><a href="#src-1" aria-label="Source 1">1</a></sup></dd></div>
+        <div class="n-mild"><dt>Mild portion</dt><dd>Lift out a portion at the end of step 4, before the chipotle goes in. It survives completely: plain picadillo is a dish in its own right.</dd></div>
+        <div class="n-scale changes"><dt>Two pounds <span class="tag">Doubling changes the method</span></dt><dd>A standard skillet is crowded by 2 lb. Brown the beef in two batches, then move everything into the Dutch oven for the simmer, which takes about 10 minutes longer.</dd></div>
+        <div class="n-left"><dt>Leftovers</dt><dd>Keeps 3–4 days in the fridge and freezes for 2–3 months; the potato turns slightly grainy after freezing.<sup class="ref"><a href="#src-2" aria-label="Source 2">2</a></sup> Day-two picadillo is the usual filling for tostadas.</dd></div>
+      </dl>
+    </div>
+  </div>
+</article>
+<article class="recipe" id="chile" data-protein="Beef" data-tier="Weekend" data-vessel="dish">
+  <header class="r-head">
+    <p class="place"><span>Chile</span><span class="dot">·</span><span>Americas</span></p>
+    <h2>Pastel de choclo</h2>
+    <p class="local"><bdi lang="es">Pastel de choclo</bdi></p>
+    <p class="gloss">Beef and onion under a baked crust of ground sweetcorn</p>
+  </header>
+  <div class="cols">
+    <aside class="side" aria-label="Ticket, shopping and substitutions">
+      
+<div class="ticket" role="group" aria-label="Scale ticket for Pastel de choclo">
+  <div class="t-head"><span>ONE POUND</span><span>COUNTER 02</span></div>
+  <dl class="t-grid">
+    <div class="t-row t-wide"><dt>Product</dt><dd>GROUND BEEF 85/15</dd></div>
+    <div class="t-row t-wide"><dt>For</dt><dd>PASTEL DE CHOCLO · CHILE</dd></div>
+    <div class="t-row t-wt"><dt>Net wt</dt><dd><span class="w1">1.00 LB</span><span class="w2" hidden>2.00 LB</span> <small><span class="w1">454 g</span><span class="w2" hidden>907 g</span></small></dd></div>
+    <div class="t-row"><dt>Serves</dt><dd><span class="w1">4</span><span class="w2" hidden>8</span></dd></div>
+    <div class="t-row"><dt>Vessel</dt><dd>BAKING DISH</dd></div>
+    <div class="t-row"><dt>Time</dt><dd>45 ACT · 90 TOT</dd></div>
+    <div class="t-row"><dt>Cook to</dt><dd>160°F · 71°C</dd></div>
+    <div class="t-row"><dt>Heat</dt><dd>MILD</dd></div>
+  </dl>
+  <div class="t-price"><span>PRICE / HEAD</span><strong>$3.83</strong></div>
+  <div class="t-foot"><span class="bars" aria-hidden="true"><i style="--w:2"></i><b style="--w:1"></b><i style="--w:3"></i><b style="--w:2"></b><i style="--w:2"></i><b style="--w:2"></b><i style="--w:2"></i><b style="--w:1"></b><i style="--w:3"></i><b style="--w:2"></b><i style="--w:3"></i><b style="--w:1"></b><i style="--w:1"></i><b style="--w:2"></b><i style="--w:1"></i><b style="--w:2"></b><i style="--w:3"></i><b style="--w:1"></b><i style="--w:3"></i><b style="--w:1"></b><i style="--w:2"></i><b style="--w:2"></b><i style="--w:1"></i><b style="--w:2"></b><i style="--w:2"></i><b style="--w:2"></b><i style="--w:2"></i><b style="--w:2"></b><i style="--w:3"></i><b style="--w:2"></b><i style="--w:3"></i><b style="--w:2"></b><i style="--w:1"></i><b style="--w:1"></b><i style="--w:1"></i><b style="--w:2"></b><i style="--w:2"></i><b style="--w:1"></b><i style="--w:1"></i><b style="--w:1"></b><i style="--w:1"></i><b style="--w:1"></b><i style="--w:3"></i><b style="--w:1"></b></span><span class="ean">0 45400 28584 2</span></div>
+  <span class="t-stamp" aria-hidden="true">WEEKEND</span>
+</div>
+      <section class="shop">
+        <h3>Shopping</h3>
+        <h4>Fresh</h4>
+        <ul><li><span class="it"><span class="q" data-a="1 lb" data-b="2 lb">1 lb</span> ground beef, 85/15 <span class="m" data-a="454 g" data-b="907 g">454 g</span></span><span class="pr"><span class="c1">$7.06</span><span class="c2" hidden>$14.12</span><abbr class="src s-bls" title="All uncooked ground beef (used for 85/15)">BLS</abbr></span></li>
+<li><span class="it"><span class="q" data-a="2" data-b="4">2</span> large onions <span class="m" data-a="450 g" data-b="900 g">450 g</span></span><span class="pr"><span class="c1">$1.48</span><span class="c2" hidden>$2.96</span><abbr class="src s-est" title="Yellow or white onions, loose">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="2" data-b="4">2</span> garlic cloves</span><span class="pr"><span class="c1">$0.16</span><span class="c2" hidden>$0.32</span><abbr class="src s-est" title="Garlic, $0.75 a head of about 10 cloves">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="2" data-b="4">2</span> eggs</span><span class="pr"><span class="c1">$0.38</span><span class="c2" hidden>$0.76</span><abbr class="src s-bls" title="Eggs, grade A, large, $2.272 a dozen">BLS</abbr></span></li>
+<li><span class="it"><span class="q" data-a="12" data-b="24">12</span> basil leaves</span><span class="pr"><span class="c1">$1.25</span><span class="c2" hidden>$2.49</span><abbr class="src s-est" title="Basil, 0.75 oz clamshell">EST</abbr></span></li></ul>
+        <h4>Pantry</h4>
+        <ul><li><span class="it"><span class="q" data-a="1½ lb" data-b="3 lb">1½ lb</span> frozen sweetcorn (corn kernels), thawed <span class="m" data-a="680 g" data-b="1360 g">680 g</span></span><span class="pr"><span class="c1">$2.98</span><span class="c2" hidden>$5.97</span><abbr class="src s-est" title="Frozen sweetcorn (corn kernels), 16 oz bag">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="½ cup" data-b="1 cup">½ cup</span> whole milk <span class="m" data-a="120 ml" data-b="240 ml">120 ml</span></span><span class="pr"><span class="c1">$0.13</span><span class="c2" hidden>$0.26</span><abbr class="src s-bls" title="Milk, fresh, whole, $4.106 a gallon">BLS</abbr></span></li>
+<li><span class="it"><span class="q" data-a="2 tbsp" data-b="4 tbsp">2 tbsp</span> butter <span class="m" data-a="28 g" data-b="55 g">28 g</span></span><span class="pr"><span class="c1">$0.31</span><span class="c2" hidden>$0.62</span><abbr class="src s-est" title="Butter, 1 lb">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="2 tbsp" data-b="4 tbsp">2 tbsp</span> vegetable oil <span class="m" data-a="30 ml" data-b="60 ml">30 ml</span></span><span class="pr"><span class="c1">$0.10</span><span class="c2" hidden>$0.21</span><abbr class="src s-est" title="Vegetable oil, 48 fl oz">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="1 tsp" data-b="2 tsp">1 tsp</span> sweet paprika</span><span class="pr"><span class="c1">$0.10</span><span class="c2" hidden>$0.20</span><abbr class="src s-est" title="Sweet paprika">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="1 tsp" data-b="2 tsp">1 tsp</span> ground cumin</span><span class="pr"><span class="c1">$0.10</span><span class="c2" hidden>$0.20</span><abbr class="src s-est" title="Ground cumin">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="½ tsp" data-b="1 tsp">½ tsp</span> dried oregano</span><span class="pr"><span class="c1">$0.05</span><span class="c2" hidden>$0.10</span><abbr class="src s-est" title="Dried oregano">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="1½ tsp" data-b="3 tsp">1½ tsp</span> salt</span><span class="pr"><span class="c1">$0.01</span><span class="c2" hidden>$0.03</span><abbr class="src s-est" title="Table salt">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="½ tsp" data-b="1 tsp">½ tsp</span> black pepper</span><span class="pr"><span class="c1">$0.02</span><span class="c2" hidden>$0.04</span><abbr class="src s-est" title="Ground black pepper">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="8" data-b="16">8</span> black olives</span><span class="pr"><span class="c1">$0.88</span><span class="c2" hidden>$1.77</span><abbr class="src s-est" title="Black olives, 6 oz tin drained">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="2 tbsp" data-b="4 tbsp">2 tbsp</span> raisins <span class="m" data-a="20 g" data-b="40 g">20 g</span></span><span class="pr"><span class="c1">$0.29</span><span class="c2" hidden>$0.58</span><abbr class="src s-est" title="Raisins, 12 oz box">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="1 tbsp" data-b="2 tbsp">1 tbsp</span> sugar, to scatter over the top</span><span class="pr opt">optional</span></li></ul>
+        <p class="basket"><span>Basket at natural yield</span> <strong><span class="c1">$15.31</span><span class="c2" hidden>$30.63</span></strong> <span class="ph">$3.83 a head · 49% of it at official average prices</span></p>
+      </section>
+      <section class="subs">
+        <h3>If you don't have it</h3>
+        <p><b>Sweetcorn.</b> US frozen sweetcorn is bred for sweetness and is wetter than the corn used in Chile. Cook the corn paste a few minutes longer than you think, and skip the sugar on top.</p><p><b>Chicken.</b> Gay's 1862 description includes chicken and many cooks still add some.<sup class="ref"><a href="#src-11" aria-label="Source 11">11</a></sup> A cup of shredded rotisserie chicken laid over the pino is an easy way to do it.</p><p><b>Olives.</b> Any black olive works. Chilean cooks often leave the stones in, so warn the table if you do.</p><p><b>Blender.</b> This is the one recipe in the book that needs one. A stick blender in a tall jug does the job as well as a jug blender.</p>
+      </section>
+    </aside>
+    <div class="main">
+      <div class="headnote"><p>A pie without pastry. The filling, <i>pino</i>, is beef cooked down with a great deal of onion and seasoned with paprika. It goes into the dish with hard-boiled egg, black olives and raisins, under a thick layer of sweetcorn ground with basil and cooked with milk, and is baked until the top browns.<sup class="ref"><a href="#src-11" aria-label="Source 11">11</a></sup></p><p>Chile has no exclusive claim to it: versions are eaten in Argentina, Bolivia, Colombia, Ecuador, Paraguay, Peru and Uruguay.<sup class="ref"><a href="#src-11" aria-label="Source 11">11</a></sup> An early Chilean description appears in Claudio Gay's <i>Historia física y política de Chile</i> of 1862, which describes minced lamb, sometimes with chicken, under ground corn seasoned with sugar, fat and chilli.<sup class="ref"><a href="#src-11" aria-label="Source 11">11</a></sup> Whether to scatter sugar over the top before it goes in the oven is still argued about in Chile, which is why it is optional here.<sup class="ref"><a href="#src-12" aria-label="Source 12">12</a></sup></p><p class="checked"><b>Checked.</b> Origin is shared and contested across South America; the book makes no claim that the dish began in Chile. The 1862 Gay description is cited from Wikipedia's summary of it.<sup class="ref"><a href="#src-11" aria-label="Source 11">11</a></sup></p></div>
+      <section class="method">
+        <h3>Method</h3>
+        
+        <ol><li>Put the eggs in the saucepan, cover with cold water, bring to the boil and simmer 9 minutes. Cool them under the cold tap and peel. Heat the oven to 200°C (400°F).</li><li>Make the pino. Heat the oil in the skillet over medium heat and cook the chopped onions with a pinch of salt for 10 minutes, until soft and golden at the edges. Push them to one side, add the beef and brown it in the cleared space (<a href="#browning">Browning a pound</a>), about 7 minutes. Stir in the garlic, paprika, cumin, oregano, 1 tsp salt, the pepper and 60 ml (¼ cup) water. Simmer 5 minutes, until moist but not wet. Taste: the pino needs to be well seasoned, because the corn is mild.</li><li>Blend the thawed corn with the basil and milk until thick and mostly smooth; some texture is fine. Rinse the saucepan, melt the butter in it and add the corn with ½ tsp salt. Cook over medium heat, stirring constantly with a long spoon, for 8–10 minutes, until it thickens to the texture of soft polenta and pulls away from the base. It spits, so keep stirring.</li><li>Spread the pino over the base of a 20 cm (8 in) square baking dish. Tuck the quartered eggs, the olives and the raisins into it. Spread the corn over the top right to the edges and smooth it. Scatter the sugar over now if you are using it.</li><li>Bake 25–30 minutes, until the edges bubble and the top has set. Then put it under the broiler (UK grill) for 2–4 minutes, watching it, until the top browns in patches. Rest 10 minutes before cutting.</li></ol>
+      </section>
+      <dl class="notes">
+        <div class="n-safety"><dt>Safety</dt><dd>Cook ground beef to at least <b>160°F / 71°C</b> in the thickest part, read on an instant-read thermometer.<sup class="ref"><a href="#src-1" aria-label="Source 1">1</a></sup></dd></div>
+        <div class="n-mild"><dt>Mild portion</dt><dd>There is no chilli in this version, so the whole dish is mild.</dd></div>
+        <div class="n-scale changes"><dt>Two pounds <span class="tag">Doubling changes the method</span></dt><dd>Use a 23 × 33 cm (9 × 13 in) baking dish. Brown the pino in the Dutch oven, blend the corn in two batches and bake 35–40 minutes.</dd></div>
+        <div class="n-left"><dt>Leftovers</dt><dd>Keeps 3–4 days in the fridge. It freezes for 2–3 months, though the hard-boiled egg turns rubbery.<sup class="ref"><a href="#src-2" aria-label="Source 2">2</a></sup> Reheat covered at 180°C (350°F) for about 20 minutes.</dd></div>
+      </dl>
+    </div>
+  </div>
+</article>
+<article class="recipe" id="poland" data-protein="Pork" data-tier="Weeknight" data-vessel="skillet">
+  <header class="r-head">
+    <p class="place"><span>Poland</span><span class="dot">·</span><span>Europe</span></p>
+    <h2>Kotlety mielone</h2>
+    <p class="local"><bdi lang="pl">Kotlety mielone</bdi></p>
+    <p class="gloss">Pork mince patties in a breadcrumb crust, with potatoes and cucumber salad</p>
+  </header>
+  <div class="cols">
+    <aside class="side" aria-label="Ticket, shopping and substitutions">
+      
+<div class="ticket" role="group" aria-label="Scale ticket for Kotlety mielone">
+  <div class="t-head"><span>ONE POUND</span><span>COUNTER 03</span></div>
+  <dl class="t-grid">
+    <div class="t-row t-wide"><dt>Product</dt><dd>GROUND PORK</dd></div>
+    <div class="t-row t-wide"><dt>For</dt><dd>KOTLETY MIELONE · POLAND</dd></div>
+    <div class="t-row t-wt"><dt>Net wt</dt><dd><span class="w1">1.00 LB</span><span class="w2" hidden>2.00 LB</span> <small><span class="w1">454 g</span><span class="w2" hidden>907 g</span></small></dd></div>
+    <div class="t-row"><dt>Serves</dt><dd><span class="w1">4</span><span class="w2" hidden>8</span></dd></div>
+    <div class="t-row"><dt>Vessel</dt><dd>SKILLET</dd></div>
+    <div class="t-row"><dt>Time</dt><dd>30 ACT · 40 TOT</dd></div>
+    <div class="t-row"><dt>Cook to</dt><dd>160°F · 71°C</dd></div>
+    <div class="t-row"><dt>Heat</dt><dd>MILD</dd></div>
+  </dl>
+  <div class="t-price"><span>PRICE / HEAD</span><strong>$2.58</strong></div>
+  <div class="t-foot"><span class="bars" aria-hidden="true"><i style="--w:1"></i><b style="--w:2"></b><i style="--w:2"></i><b style="--w:2"></b><i style="--w:3"></i><b style="--w:2"></b><i style="--w:1"></i><b style="--w:2"></b><i style="--w:1"></i><b style="--w:2"></b><i style="--w:3"></i><b style="--w:1"></b><i style="--w:3"></i><b style="--w:1"></b><i style="--w:3"></i><b style="--w:1"></b><i style="--w:2"></i><b style="--w:2"></b><i style="--w:3"></i><b style="--w:2"></b><i style="--w:1"></i><b style="--w:2"></b><i style="--w:2"></i><b style="--w:1"></b><i style="--w:2"></i><b style="--w:2"></b><i style="--w:1"></i><b style="--w:1"></b><i style="--w:3"></i><b style="--w:2"></b><i style="--w:3"></i><b style="--w:1"></b><i style="--w:1"></i><b style="--w:1"></b><i style="--w:1"></i><b style="--w:2"></b><i style="--w:2"></i><b style="--w:2"></b><i style="--w:2"></i><b style="--w:2"></b><i style="--w:1"></i><b style="--w:2"></b><i style="--w:3"></i><b style="--w:1"></b></span><span class="ean">0 45400 64648 3</span></div>
+  <span class="t-stamp" aria-hidden="true">WEEKNIGHT</span>
+</div>
+      <section class="shop">
+        <h3>Shopping</h3>
+        <h4>Fresh</h4>
+        <ul><li><span class="it"><span class="q" data-a="1 lb" data-b="2 lb">1 lb</span> ground pork <span class="m" data-a="454 g" data-b="907 g">454 g</span></span><span class="pr"><span class="c1">$3.70</span><span class="c2" hidden>$7.40</span><abbr class="src s-usda" title="Ground pork, 1–2 lb, conventional: 400 stores, Weekly Grocery Store Pork Feature Activity, released 9 Oct 2026">USDA</abbr></span></li>
+<li><span class="it"><span class="q" data-a="1" data-b="2">1</span> <span data-a="small onion" data-b="small onions">small onion</span> <span class="m" data-a="110 g" data-b="220 g">110 g</span></span><span class="pr"><span class="c1">$0.36</span><span class="c2" hidden>$0.72</span><abbr class="src s-est" title="Yellow or white onions, loose">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="1" data-b="2">1</span> <span data-a="egg" data-b="eggs">egg</span></span><span class="pr"><span class="c1">$0.19</span><span class="c2" hidden>$0.38</span><abbr class="src s-bls" title="Eggs, grade A, large, $2.272 a dozen">BLS</abbr></span></li>
+<li><span class="it"><span class="q" data-a="2 slices" data-b="4 slices">2 slices</span> white bread, crusts on (or a kaiser roll) <span class="m" data-a="60 g" data-b="120 g">60 g</span></span><span class="pr"><span class="c1">$0.24</span><span class="c2" hidden>$0.48</span><abbr class="src s-bls" title="Bread, white, pan">BLS</abbr></span></li>
+<li><span class="it"><span class="q" data-a="1½ lb" data-b="3 lb">1½ lb</span> potatoes <span class="m" data-a="680 g" data-b="1360 g">680 g</span></span><span class="pr"><span class="c1">$1.48</span><span class="c2" hidden>$2.97</span><abbr class="src s-bls" title="Potatoes, white">BLS</abbr></span></li>
+<li><span class="it"><span class="q" data-a="1" data-b="2">1</span> <span data-a="cucumber" data-b="cucumbers">cucumber</span></span><span class="pr"><span class="c1">$0.89</span><span class="c2" hidden>$1.78</span><abbr class="src s-est" title="Cucumber">EST</abbr></span></li>
+<li><span class="it">dill, a small bunch</span><span class="pr"><span class="c1">$1.99</span><span class="c2" hidden>$3.98</span><abbr class="src s-est" title="Dill, a bunch">EST</abbr></span></li></ul>
+        <h4>Pantry</h4>
+        <ul><li><span class="it"><span class="q" data-a="⅓ cup" data-b="⅔ cup">⅓ cup</span> whole milk <span class="m" data-a="80 ml" data-b="160 ml">80 ml</span></span><span class="pr"><span class="c1">$0.08</span><span class="c2" hidden>$0.17</span><abbr class="src s-bls" title="Milk, fresh, whole, $4.106 a gallon">BLS</abbr></span></li>
+<li><span class="it"><span class="q" data-a="1 tsp" data-b="2 tsp">1 tsp</span> dried marjoram</span><span class="pr"><span class="c1">$0.15</span><span class="c2" hidden>$0.30</span><abbr class="src s-est" title="Dried marjoram">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="1 tsp" data-b="2 tsp">1 tsp</span> salt</span><span class="pr"><span class="c1">$0.01</span><span class="c2" hidden>$0.02</span><abbr class="src s-est" title="Table salt">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="½ tsp" data-b="1 tsp">½ tsp</span> black pepper</span><span class="pr"><span class="c1">$0.02</span><span class="c2" hidden>$0.04</span><abbr class="src s-est" title="Ground black pepper">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="¾ cup" data-b="1½ cups">¾ cup</span> plain dry breadcrumbs <span class="m" data-a="75 g" data-b="150 g">75 g</span></span><span class="pr"><span class="c1">$0.47</span><span class="c2" hidden>$0.93</span><abbr class="src s-est" title="Plain dry breadcrumbs, 15 oz">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="2 tbsp" data-b="4 tbsp">2 tbsp</span> butter <span class="m" data-a="28 g" data-b="55 g">28 g</span></span><span class="pr"><span class="c1">$0.31</span><span class="c2" hidden>$0.62</span><abbr class="src s-est" title="Butter, 1 lb">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="4 tbsp" data-b="8 tbsp">4 tbsp</span> vegetable oil <span class="m" data-a="60 ml" data-b="120 ml">60 ml</span></span><span class="pr"><span class="c1">$0.21</span><span class="c2" hidden>$0.42</span><abbr class="src s-est" title="Vegetable oil, 48 fl oz">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="3 tbsp" data-b="6 tbsp">3 tbsp</span> sour cream <span class="m" data-a="45 g" data-b="90 g">45 g</span></span><span class="pr"><span class="c1">$0.21</span><span class="c2" hidden>$0.43</span><abbr class="src s-est" title="Sour cream, 16 oz">EST</abbr></span></li></ul>
+        <p class="basket"><span>Basket at natural yield</span> <strong><span class="c1">$10.32</span><span class="c2" hidden>$20.64</span></strong> <span class="ph">$2.58 a head · 55% of it at official average prices</span></p>
+      </section>
+      <section class="subs">
+        <h3>If you don't have it</h3>
+        <p><b>Marjoram.</b> Dried oregano is its closest relative and the nearest swap. It is sharper and less sweet, so use a little less.</p><p><b>Half beef.</b> Pork or beef are both standard.<sup class="ref"><a href="#src-13" aria-label="Source 13">13</a></sup> Half and half gives a firmer, beefier patty.</p><p><b>Breadcrumbs.</b> Use plain fine crumbs. Panko makes a spikier, crunchier crust that is less like the Polish one.</p><p><b>Dill.</b> Flat-leaf parsley, on the potatoes and in the salad. The salad without dill is still good, but plainer.</p>
+      </section>
+    </aside>
+    <div class="main">
+      <div class="headnote"><p>Culture.pl calls the minced cutlet one of Poland's popular, everyday meat dishes. It is a fixture of milk bars and lunch counters, and it became especially common under communism, though it is older than that: nineteenth-century cookbooks give recipes for minced beef, pork or veal cutlets, and the first Polish cookbook, from the seventeenth century, has a related meatball of chopped meats.<sup class="ref"><a href="#src-13" aria-label="Source 13">13</a></sup></p><p>At home it is a Sunday standard. The mixture is pork, a roll soaked in milk, egg, fried onion and marjoram, coated in breadcrumbs and fried, and the plate usually has boiled potatoes and a cucumber salad beside it.<sup class="ref"><a href="#src-14" aria-label="Source 14">14</a></sup> The word <i>kotlet</i> belongs to the cutlet family, from the French <i>côtelette</i>.<sup class="ref"><a href="#src-15" aria-label="Source 15">15</a></sup></p><p class="checked"><b>Checked.</b> The communist-era popularity and the older cookbook history come from Culture.pl.<sup class="ref"><a href="#src-13" aria-label="Source 13">13</a></sup> No single origin is claimed.</p></div>
+      <section class="method">
+        <h3>Method</h3>
+        <p class="tech">This recipe works the mince raw into a mixture, so it skips <a href="#browning">Browning a pound</a>.</p>
+        <ol><li>Peel and halve the potatoes and put them in the saucepan with cold salted water. Bring to the boil and cook 15–20 minutes, until a knife slides in without resistance. Start them first.</li><li>Tear the bread into a bowl, pour over the milk and leave it 5 minutes to go soft.</li><li>Chop the onion finely and cook it in 1 tbsp of the butter in the skillet over medium heat for 5 minutes, until soft and pale gold. Tip it onto a plate to cool. Keep the skillet: you will fry in it.</li><li>Squeeze the bread lightly so it is wet but not dripping. Add it to the pork with the egg, the cooled onion, marjoram, salt and pepper, and work it with one hand for 1–2 minutes, until the mixture binds and feels slightly sticky.</li><li>With wet hands, shape 8 ovals about 2 cm (¾ in) thick. Press each into the breadcrumbs on both sides.</li><li>Heat the oil and the rest of the butter in the skillet over medium heat until a crumb dropped in sizzles at once. Fry in two batches, 4–5 minutes a side, until deep golden and firm when pressed. If the crust darkens before 4 minutes, turn the heat down: the inside needs the time.</li><li>While they fry, make the salad: slice the cucumber very thin, salt it and leave it 5 minutes, then squeeze out the water and stir in the sour cream and chopped dill. Drain the potatoes and toss them with a knob of butter and more dill.</li></ol>
+      </section>
+      <dl class="notes">
+        <div class="n-safety"><dt>Safety</dt><dd>Cook ground pork to at least <b>160°F / 71°C</b> in the thickest part, read on an instant-read thermometer.<sup class="ref"><a href="#src-1" aria-label="Source 1">1</a></sup></dd></div>
+        <div class="n-mild"><dt>Mild portion</dt><dd>No chilli anywhere, so the whole dish is mild.</dd></div>
+        <div class="n-scale changes"><dt>Two pounds <span class="tag">Doubling changes the method</span></dt><dd>16 patties need four batches in a standard skillet. Keep the cooked ones warm on the sheet tray in a 120°C (250°F) oven. Frying takes about 40 minutes, so at 2 lb this is a weekend dinner.</dd></div>
+        <div class="n-left"><dt>Leftovers</dt><dd>Cooked patties keep 3–4 days and are good cold. They freeze for 1–3 months.<sup class="ref"><a href="#src-2" aria-label="Source 2">2</a></sup> Shaped, uncrumbed raw patties freeze well between sheets of paper for up to 3–4 months.</dd></div>
+      </dl>
+    </div>
+  </div>
+</article>
+<article class="recipe" id="egypt" data-protein="Beef" data-tier="Weeknight" data-vessel="tray">
+  <header class="r-head">
+    <p class="place"><span>Egypt</span><span class="dot">·</span><span>Africa</span></p>
+    <h2>Hawawshi</h2>
+    <p class="local"><bdi lang="ar">حواوشي</bdi> <span class="roman">ḥawawshi</span></p>
+    <p class="gloss">Spiced beef baked inside bread until crisp</p>
+  </header>
+  <div class="cols">
+    <aside class="side" aria-label="Ticket, shopping and substitutions">
+      
+<div class="ticket" role="group" aria-label="Scale ticket for Hawawshi">
+  <div class="t-head"><span>ONE POUND</span><span>COUNTER 04</span></div>
+  <dl class="t-grid">
+    <div class="t-row t-wide"><dt>Product</dt><dd>GROUND BEEF 80/20</dd></div>
+    <div class="t-row t-wide"><dt>For</dt><dd>HAWAWSHI · EGYPT</dd></div>
+    <div class="t-row t-wt"><dt>Net wt</dt><dd><span class="w1">1.00 LB</span><span class="w2" hidden>2.00 LB</span> <small><span class="w1">454 g</span><span class="w2" hidden>907 g</span></small></dd></div>
+    <div class="t-row"><dt>Serves</dt><dd><span class="w1">4</span><span class="w2" hidden>8</span></dd></div>
+    <div class="t-row"><dt>Vessel</dt><dd>SHEET TRAY</dd></div>
+    <div class="t-row"><dt>Time</dt><dd>20 ACT · 40 TOT</dd></div>
+    <div class="t-row"><dt>Cook to</dt><dd>160°F · 71°C</dd></div>
+    <div class="t-row"><dt>Heat</dt><dd>MEDIUM</dd></div>
+  </dl>
+  <div class="t-price"><span>PRICE / HEAD</span><strong>$3.79</strong></div>
+  <div class="t-foot"><span class="bars" aria-hidden="true"><i style="--w:1"></i><b style="--w:1"></b><i style="--w:2"></i><b style="--w:1"></b><i style="--w:1"></i><b style="--w:2"></b><i style="--w:2"></i><b style="--w:2"></b><i style="--w:3"></i><b style="--w:2"></b><i style="--w:3"></i><b style="--w:1"></b><i style="--w:2"></i><b style="--w:1"></b><i style="--w:2"></i><b style="--w:2"></b><i style="--w:2"></i><b style="--w:2"></b><i style="--w:3"></i><b style="--w:2"></b><i style="--w:1"></i><b style="--w:1"></b><i style="--w:1"></i><b style="--w:2"></b><i style="--w:1"></i><b style="--w:1"></b><i style="--w:3"></i><b style="--w:1"></b><i style="--w:1"></i><b style="--w:1"></b><i style="--w:2"></i><b style="--w:1"></b><i style="--w:2"></i><b style="--w:2"></b><i style="--w:1"></i><b style="--w:2"></b><i style="--w:1"></i><b style="--w:1"></b><i style="--w:2"></i><b style="--w:2"></b><i style="--w:1"></i><b style="--w:1"></b><i style="--w:3"></i><b style="--w:1"></b></span><span class="ean">0 45400 40786 3</span></div>
+  <span class="t-stamp" aria-hidden="true">WEEKNIGHT</span>
+</div>
+      <section class="shop">
+        <h3>Shopping</h3>
+        <h4>Fresh</h4>
+        <ul><li><span class="it"><span class="q" data-a="1 lb" data-b="2 lb">1 lb</span> ground beef, 80/20 <span class="m" data-a="454 g" data-b="907 g">454 g</span></span><span class="pr"><span class="c1">$6.79</span><span class="c2" hidden>$13.58</span><abbr class="src s-bls" title="Ground beef, 100% beef (used for 80/20)">BLS</abbr></span></li>
+<li><span class="it"><span class="q" data-a="1" data-b="2">1</span> <span data-a="medium onion" data-b="medium onions">medium onion</span> <span class="m" data-a="150 g" data-b="300 g">150 g</span></span><span class="pr"><span class="c1">$0.49</span><span class="c2" hidden>$0.99</span><abbr class="src s-est" title="Yellow or white onions, loose">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="1" data-b="2">1</span> <span data-a="green bell pepper" data-b="green bell peppers">green bell pepper</span> <span class="m" data-a="150 g" data-b="300 g">150 g</span></span><span class="pr"><span class="c1">$1.29</span><span class="c2" hidden>$2.58</span><abbr class="src s-est" title="Green bell pepper">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="1" data-b="2">1</span> <span data-a="jalapeño or serrano chilli" data-b="jalapeño or serrano chillies">jalapeño or serrano chilli</span></span><span class="pr"><span class="c1">$0.10</span><span class="c2" hidden>$0.20</span><abbr class="src s-est" title="Serrano or jalapeño chilli">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="1" data-b="2">1</span> <span data-a="small tomato" data-b="small tomatoes">small tomato</span> <span class="m" data-a="120 g" data-b="240 g">120 g</span></span><span class="pr"><span class="c1">$0.53</span><span class="c2" hidden>$1.05</span><abbr class="src s-bls" title="Tomatoes, field grown">BLS</abbr></span></li>
+<li><span class="it"><span class="q" data-a="3" data-b="6">3</span> garlic cloves</span><span class="pr"><span class="c1">$0.24</span><span class="c2" hidden>$0.48</span><abbr class="src s-est" title="Garlic, $0.75 a head of about 10 cloves">EST</abbr></span></li>
+<li><span class="it">flat-leaf parsley, a handful</span><span class="pr"><span class="c1">$0.49</span><span class="c2" hidden>$0.99</span><abbr class="src s-est" title="Flat-leaf parsley, a bunch">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="6" data-b="12">6</span> pitta pockets (US pita), about 6½ in</span><span class="pr"><span class="c1">$2.99</span><span class="c2" hidden>$5.98</span><abbr class="src s-est" title="Pitta pockets, 6-pack">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="1" data-b="2">1</span> <span data-a="lemon" data-b="lemons">lemon</span></span><span class="pr"><span class="c1">$0.53</span><span class="c2" hidden>$1.06</span><abbr class="src s-bls" title="Lemons, $2.128 a lb, about 4 to the lb">BLS</abbr></span></li></ul>
+        <h4>Pantry</h4>
+        <ul><li><span class="it"><span class="q" data-a="1 tbsp" data-b="2 tbsp">1 tbsp</span> tomato paste</span><span class="pr"><span class="c1">$0.10</span><span class="c2" hidden>$0.20</span><abbr class="src s-est" title="Tomato paste, 6 oz tin">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="1 tsp" data-b="2 tsp">1 tsp</span> ground cumin</span><span class="pr"><span class="c1">$0.10</span><span class="c2" hidden>$0.20</span><abbr class="src s-est" title="Ground cumin">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="1 tsp" data-b="2 tsp">1 tsp</span> ground coriander</span><span class="pr"><span class="c1">$0.10</span><span class="c2" hidden>$0.20</span><abbr class="src s-est" title="Ground coriander">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="½ tsp" data-b="1 tsp">½ tsp</span> chilli flakes</span><span class="pr"><span class="c1">$0.04</span><span class="c2" hidden>$0.08</span><abbr class="src s-est" title="Chilli flakes">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="1¼ tsp" data-b="2½ tsp">1¼ tsp</span> salt</span><span class="pr"><span class="c1">$0.01</span><span class="c2" hidden>$0.03</span><abbr class="src s-est" title="Table salt">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="½ tsp" data-b="1 tsp">½ tsp</span> black pepper</span><span class="pr"><span class="c1">$0.02</span><span class="c2" hidden>$0.04</span><abbr class="src s-est" title="Ground black pepper">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="3 tbsp" data-b="6 tbsp">3 tbsp</span> butter, melted <span class="m" data-a="42 g" data-b="85 g">42 g</span></span><span class="pr"><span class="c1">$0.47</span><span class="c2" hidden>$0.94</span><abbr class="src s-est" title="Butter, 1 lb">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="4 tbsp" data-b="8 tbsp">4 tbsp</span> tahini, for the sauce <span class="m" data-a="60 g" data-b="120 g">60 g</span></span><span class="pr"><span class="c1">$0.87</span><span class="c2" hidden>$1.75</span><abbr class="src s-est" title="Tahini, 16 oz jar">EST</abbr></span></li></ul>
+        <p class="basket"><span>Basket at natural yield</span> <strong><span class="c1">$15.17</span><span class="c2" hidden>$30.35</span></strong> <span class="ph">$3.79 a head · 52% of it at official average prices</span></p>
+      </section>
+      <section class="subs">
+        <h3>If you don't have it</h3>
+        <p><b>Bread.</b> Egyptian baladi bread is thinner than US pitta. Pitta works but stays softer at the centre; split very thick pockets and use the thinner halves.</p><p><b>Leaner beef.</b> Go no leaner than 85/15. The fat is what crisps the bread from inside, and lean hawawshi is dry.</p><p><b>Tahini.</b> Already on the shelf from <i>Ten Weeknights</i>. Plain yoghurt with garlic and lemon is a fine sauce instead; pickles are the other usual side.</p>
+      </section>
+    </aside>
+    <div class="main">
+      <div class="headnote"><p>Minced meat, onion, peppers and spices spread thin inside bread and baked until the bread crisps and the fat soaks through it. It is sold across Egypt as street food, and Egyptian recipe sites publish oven versions for cooking at home.<sup class="ref"><a href="#src-16" aria-label="Source 16">16</a></sup><sup class="ref"><a href="#src-17" aria-label="Source 17">17</a></sup></p><p>The usual origin story names a Cairo butcher, but even his name is uncertain (Mohamed El-Hawawshi or Ahmed El-Hawawsh), and the date is given as the 1930s by some and the 1970s by many. The earlier date rests on a photograph of a receipt said to come from his shop, which nobody has verified.<sup class="ref"><a href="#src-16" aria-label="Source 16">16</a></sup> Treat the story as unconfirmed.</p><p class="checked"><b>Checked.</b> Origin contested: the butcher's name and the decade are both disputed and the evidence is weak.<sup class="ref"><a href="#src-16" aria-label="Source 16">16</a></sup> Egyptian versions often mix beef and lamb; this one is all beef.</p></div>
+      <section class="method">
+        <h3>Method</h3>
+        <p class="tech">This recipe works the mince raw into a mixture, so it skips <a href="#browning">Browning a pound</a>.</p>
+        <ol><li>Heat the oven to 220°C (425°F) with a rack in the middle. Line the sheet tray with foil or baking paper.</li><li>Grate the onion and squeeze it hard in your hands to get rid of the liquid. Finely chop the pepper, the chilli, the tomato (seeds out) and the parsley, and mince 2 garlic cloves.</li><li>Mix the beef with the onion, pepper, tomato, parsley, garlic, tomato paste, cumin, coriander, salt and pepper with your hand until even. If you are keeping a mild portion, fill two pittas now (see below), then work in the chilli and chilli flakes.</li><li>Cut a slit along the top third of each pitta to open the pocket. Spread a sixth of the filling inside, in a thin even layer about 1 cm (⅜ in) thick, right to the edges, and press flat. Thin is what lets the meat cook through before the bread burns.</li><li>Brush the outsides with the melted butter and lay them on the tray. Bake 10 minutes, turn them over, and bake 8–10 minutes more, until the bread is crisp and brown and fat is bubbling at the edges. For extra crunch, 1 minute under the broiler (UK grill) at the end.</li><li>Meanwhile whisk the tahini with the juice of the lemon, the last garlic clove grated, a pinch of salt and cold water a spoonful at a time. It seizes, then loosens into a pourable sauce. Cut the hawawshi into halves and serve with the sauce.</li></ol>
+      </section>
+      <dl class="notes">
+        <div class="n-safety"><dt>Safety</dt><dd>Cook ground beef to at least <b>160°F / 71°C</b> in the thickest part, read on an instant-read thermometer.<sup class="ref"><a href="#src-1" aria-label="Source 1">1</a></sup></dd></div>
+        <div class="n-mild"><dt>Mild portion</dt><dd>Fill two pittas before the chilli and chilli flakes go in (step 3). They survive well and taste of the spices and herbs without the heat.</dd></div>
+        <div class="n-scale changes"><dt>Two pounds <span class="tag">Doubling changes the method</span></dt><dd>12 pittas need two sheet trays. With one tray, bake in two rounds; that adds about 20 minutes.</dd></div>
+        <div class="n-left"><dt>Leftovers</dt><dd>Best straight from the oven. Leftovers keep 3–4 days in the fridge and reheat on the sheet tray at 200°C (400°F) for 8–10 minutes; they freeze, once cooked, for 1–2 months.<sup class="ref"><a href="#src-2" aria-label="Source 2">2</a></sup></dd></div>
+      </dl>
+    </div>
+  </div>
+</article>
+<article class="recipe" id="southafrica" data-protein="Beef" data-tier="Weekend" data-vessel="skillet">
+  <header class="r-head">
+    <p class="place"><span>South Africa</span><span class="dot">·</span><span>Africa</span></p>
+    <h2>Bobotie</h2>
+    <p class="local"><bdi lang="af">Bobotie</bdi></p>
+    <p class="gloss">Curried mince baked under an egg custard</p>
+  </header>
+  <div class="cols">
+    <aside class="side" aria-label="Ticket, shopping and substitutions">
+      
+<div class="ticket" role="group" aria-label="Scale ticket for Bobotie">
+  <div class="t-head"><span>ONE POUND</span><span>COUNTER 05</span></div>
+  <dl class="t-grid">
+    <div class="t-row t-wide"><dt>Product</dt><dd>GROUND BEEF 85/15</dd></div>
+    <div class="t-row t-wide"><dt>For</dt><dd>BOBOTIE · SOUTH AFRICA</dd></div>
+    <div class="t-row t-wt"><dt>Net wt</dt><dd><span class="w1">1.00 LB</span><span class="w2" hidden>2.00 LB</span> <small><span class="w1">454 g</span><span class="w2" hidden>907 g</span></small></dd></div>
+    <div class="t-row"><dt>Serves</dt><dd><span class="w1">4</span><span class="w2" hidden>8</span></dd></div>
+    <div class="t-row"><dt>Vessel</dt><dd>SKILLET, INTO THE OVEN</dd></div>
+    <div class="t-row"><dt>Time</dt><dd>25 ACT · 70 TOT</dd></div>
+    <div class="t-row"><dt>Cook to</dt><dd>160°F · 71°C</dd></div>
+    <div class="t-row"><dt>Heat</dt><dd>MILD</dd></div>
+  </dl>
+  <div class="t-price"><span>PRICE / HEAD</span><strong>$2.81</strong></div>
+  <div class="t-foot"><span class="bars" aria-hidden="true"><i style="--w:2"></i><b style="--w:1"></b><i style="--w:1"></i><b style="--w:2"></b><i style="--w:2"></i><b style="--w:2"></b><i style="--w:2"></i><b style="--w:1"></b><i style="--w:2"></i><b style="--w:2"></b><i style="--w:2"></i><b style="--w:1"></b><i style="--w:1"></i><b style="--w:1"></b><i style="--w:1"></i><b style="--w:2"></b><i style="--w:1"></i><b style="--w:1"></b><i style="--w:1"></i><b style="--w:2"></b><i style="--w:3"></i><b style="--w:2"></b><i style="--w:2"></i><b style="--w:2"></b><i style="--w:2"></i><b style="--w:2"></b><i style="--w:3"></i><b style="--w:2"></b><i style="--w:2"></i><b style="--w:1"></b><i style="--w:1"></i><b style="--w:1"></b><i style="--w:3"></i><b style="--w:1"></b><i style="--w:3"></i><b style="--w:1"></b><i style="--w:1"></i><b style="--w:1"></b><i style="--w:2"></i><b style="--w:2"></b><i style="--w:2"></i><b style="--w:1"></b><i style="--w:1"></i><b style="--w:2"></b></span><span class="ean">0 45400 23982 3</span></div>
+  <span class="t-stamp" aria-hidden="true">WEEKEND</span>
+</div>
+      <section class="shop">
+        <h3>Shopping</h3>
+        <h4>Fresh</h4>
+        <ul><li><span class="it"><span class="q" data-a="1 lb" data-b="2 lb">1 lb</span> ground beef, 85/15 <span class="m" data-a="454 g" data-b="907 g">454 g</span></span><span class="pr"><span class="c1">$7.06</span><span class="c2" hidden>$14.12</span><abbr class="src s-bls" title="All uncooked ground beef (used for 85/15)">BLS</abbr></span></li>
+<li><span class="it"><span class="q" data-a="1" data-b="2">1</span> <span data-a="large onion" data-b="large onions">large onion</span> <span class="m" data-a="200 g" data-b="400 g">200 g</span></span><span class="pr"><span class="c1">$0.66</span><span class="c2" hidden>$1.31</span><abbr class="src s-est" title="Yellow or white onions, loose">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="2" data-b="4">2</span> garlic cloves</span><span class="pr"><span class="c1">$0.16</span><span class="c2" hidden>$0.32</span><abbr class="src s-est" title="Garlic, $0.75 a head of about 10 cloves">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="1 slice" data-b="2 slices">1 slice</span> white bread <span class="m" data-a="30 g" data-b="60 g">30 g</span></span><span class="pr"><span class="c1">$0.12</span><span class="c2" hidden>$0.24</span><abbr class="src s-bls" title="Bread, white, pan">BLS</abbr></span></li>
+<li><span class="it"><span class="q" data-a="2" data-b="4">2</span> eggs</span><span class="pr"><span class="c1">$0.38</span><span class="c2" hidden>$0.76</span><abbr class="src s-bls" title="Eggs, grade A, large, $2.272 a dozen">BLS</abbr></span></li>
+<li><span class="it"><span class="q" data-a="½" data-b="1">½</span> <span data-a="lemon, juiced" data-b="lemons, juiced">lemon, juiced</span></span><span class="pr"><span class="c1">$0.27</span><span class="c2" hidden>$0.53</span><abbr class="src s-bls" title="Lemons, $2.128 a lb, about 4 to the lb">BLS</abbr></span></li></ul>
+        <h4>Pantry</h4>
+        <ul><li><span class="it"><span class="q" data-a="1 cup" data-b="2 cups">1 cup</span> whole milk <span class="m" data-a="240 ml" data-b="480 ml">240 ml</span></span><span class="pr"><span class="c1">$0.26</span><span class="c2" hidden>$0.51</span><abbr class="src s-bls" title="Milk, fresh, whole, $4.106 a gallon">BLS</abbr></span></li>
+<li><span class="it"><span class="q" data-a="2½ tsp" data-b="5 tsp">2½ tsp</span> curry powder</span><span class="pr"><span class="c1">$0.38</span><span class="c2" hidden>$0.75</span><abbr class="src s-est" title="Curry powder">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="1 tsp" data-b="2 tsp">1 tsp</span> ground turmeric</span><span class="pr"><span class="c1">$0.10</span><span class="c2" hidden>$0.20</span><abbr class="src s-est" title="Ground turmeric">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="2 tbsp" data-b="4 tbsp">2 tbsp</span> apricot jam <span class="m" data-a="40 g" data-b="80 g">40 g</span></span><span class="pr"><span class="c1">$0.29</span><span class="c2" hidden>$0.58</span><abbr class="src s-est" title="Apricot jam, 18 oz jar">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="2 tbsp" data-b="4 tbsp">2 tbsp</span> raisins <span class="m" data-a="20 g" data-b="40 g">20 g</span></span><span class="pr"><span class="c1">$0.29</span><span class="c2" hidden>$0.58</span><abbr class="src s-est" title="Raisins, 12 oz box">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="4" data-b="8">4</span> bay leaves</span><span class="pr"><span class="c1">$0.48</span><span class="c2" hidden>$0.96</span><abbr class="src s-est" title="Bay leaf">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="1 tbsp" data-b="2 tbsp">1 tbsp</span> vegetable oil <span class="m" data-a="15 ml" data-b="30 ml">15 ml</span></span><span class="pr"><span class="c1">$0.05</span><span class="c2" hidden>$0.10</span><abbr class="src s-est" title="Vegetable oil, 48 fl oz">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="1¼ tsp" data-b="2½ tsp">1¼ tsp</span> salt</span><span class="pr"><span class="c1">$0.01</span><span class="c2" hidden>$0.03</span><abbr class="src s-est" title="Table salt">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="½ tsp" data-b="1 tsp">½ tsp</span> black pepper</span><span class="pr"><span class="c1">$0.02</span><span class="c2" hidden>$0.04</span><abbr class="src s-est" title="Ground black pepper">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="1½ cups" data-b="3 cups">1½ cups</span> long-grain rice <span class="m" data-a="285 g" data-b="570 g">285 g</span></span><span class="pr"><span class="c1">$0.70</span><span class="c2" hidden>$1.40</span><abbr class="src s-bls" title="Rice, white, long grain, uncooked (also used as a proxy for short-grain)">BLS</abbr></span></li></ul>
+        <p class="basket"><span>Basket at natural yield</span> <strong><span class="c1">$11.22</span><span class="c2" hidden>$22.45</span></strong> <span class="ph">$2.81 a head · 78% of it at official average prices</span></p>
+      </section>
+      <section class="subs">
+        <h3>If you don't have it</h3>
+        <p><b>Chutney.</b> The Stellenbosch recipe uses peach or mango chutney as well as apricot jam.<sup class="ref"><a href="#src-19" aria-label="Source 19">19</a></sup> If you keep mango chutney, use 1 tbsp of it and 1 tbsp of jam and drop the lemon; it tastes rounder and spicier. Jam and lemon gets the sweet-sour balance without a single-use jar.</p><p><b>Lamb.</b> Lamb is as traditional as beef.<sup class="ref"><a href="#src-18" aria-label="Source 18">18</a></sup> It makes a richer bobotie.</p><p><b>Bay leaves.</b> Older recipes use lemon rind rather than leaves.<sup class="ref"><a href="#src-18" aria-label="Source 18">18</a></sup> A strip of lemon zest in the custard is a good stand-in if you have no bay.</p>
+      </section>
+    </aside>
+    <div class="main">
+      <div class="headnote"><p>Mince cooked with curry powder, a little fruit and milk-soaked bread, then baked under a thin layer of egg and milk. It is associated with the Cape Malay community and is now often called South Africa's national dish. It is served with yellow rice.<sup class="ref"><a href="#src-18" aria-label="Source 18">18</a></sup><sup class="ref"><a href="#src-19" aria-label="Source 19">19</a></sup></p><p>Its history is disputed. The word may come from the Malay <i>boemboe</i>, curry spices, or from <i>bobotok</i>, an Indonesian dish with quite different ingredients; Wikipedia calls the etymology contentious.<sup class="ref"><a href="#src-18" aria-label="Source 18">18</a></sup> Stellenbosch University's account says food researchers trace the recipe to Dutch traders moving between Indonesia and the Cape in the seventeenth century, while other writers point to European layered meat dishes.<sup class="ref"><a href="#src-19" aria-label="Source 19">19</a></sup><sup class="ref"><a href="#src-18" aria-label="Source 18">18</a></sup> None of these is settled, and the book does not choose between them.</p><p class="checked"><b>Checked.</b> Origin and etymology are both contested.<sup class="ref"><a href="#src-18" aria-label="Source 18">18</a></sup> The proportions here are adapted from Stellenbosch University's recipe, with more custard.<sup class="ref"><a href="#src-19" aria-label="Source 19">19</a></sup></p></div>
+      <section class="method">
+        <h3>Method</h3>
+        
+        <ol><li>Heat the oven to 180°C (350°F). Tear the bread into a bowl and soak it in 60 ml (¼ cup) of the milk.</li><li>Heat the oil in the skillet over medium heat and cook the chopped onion for 6–7 minutes, until soft and golden. Add the garlic, curry powder and ½ tsp of the turmeric and cook 1 minute, until fragrant.</li><li>Turn the heat to medium-high, add the beef and brown it, breaking it up (<a href="#browning">Browning a pound</a>), about 8 minutes. If more than a tablespoon or so of fat has pooled, spoon it off.</li><li>Squeeze the bread, keeping the milk, and stir it in with the jam, lemon juice, raisins, 1 tsp salt and the pepper. Cook 3 minutes and taste: it should be savoury first, then gently sweet and sour.</li><li>Press the mixture level in the skillet and stand the bay leaves upright in it. Whisk the eggs with the rest of the milk, the milk from the bread and a pinch of salt, and pour it over the top.</li><li>Bake 30–35 minutes, until the custard has set with no wobble in the middle and is golden in places. Rest 5 minutes.</li><li>While it bakes, cook the rice in the saucepan with the remaining ½ tsp turmeric and a pinch of salt.</li></ol>
+      </section>
+      <dl class="notes">
+        <div class="n-safety"><dt>Safety</dt><dd>Cook ground beef to at least <b>160°F / 71°C</b> in the thickest part, read on an instant-read thermometer.<sup class="ref"><a href="#src-1" aria-label="Source 1">1</a></sup></dd></div>
+        <div class="n-mild"><dt>Mild portion</dt><dd>Supermarket curry powder is mild, and it is mixed through the whole dish, so there is no separate portion to lift out. Children generally eat it as it is.</dd></div>
+        <div class="n-scale changes"><dt>Two pounds <span class="tag">Doubling changes the method</span></dt><dd>Cook the filling in the Dutch oven and bake it in a 23 × 33 cm (9 × 13 in) baking dish with a custard of 3 eggs and 300 ml (1¼ cups) milk, for 40–45 minutes.</dd></div>
+        <div class="n-left"><dt>Leftovers</dt><dd>Keeps 3–4 days in the fridge and freezes for 2–3 months after baking; the custard weeps a little on thawing.<sup class="ref"><a href="#src-2" aria-label="Source 2">2</a></sup></dd></div>
+      </dl>
+    </div>
+  </div>
+</article>
+<article class="recipe" id="iran" data-protein="Beef" data-tier="Weeknight" data-vessel="skillet">
+  <header class="r-head">
+    <p class="place"><span>Iran</span><span class="dot">·</span><span>West Asia</span></p>
+    <h2>Kotlet</h2>
+    <p class="local"><bdi lang="fa">کتلت</bdi> <span class="roman">kotlet</span></p>
+    <p class="gloss">Beef and potato patties, fried crisp</p>
+  </header>
+  <div class="cols">
+    <aside class="side" aria-label="Ticket, shopping and substitutions">
+      
+<div class="ticket" role="group" aria-label="Scale ticket for Kotlet">
+  <div class="t-head"><span>ONE POUND</span><span>COUNTER 06</span></div>
+  <dl class="t-grid">
+    <div class="t-row t-wide"><dt>Product</dt><dd>GROUND BEEF 85/15</dd></div>
+    <div class="t-row t-wide"><dt>For</dt><dd>KOTLET · IRAN</dd></div>
+    <div class="t-row t-wt"><dt>Net wt</dt><dd><span class="w1">1.00 LB</span><span class="w2" hidden>2.00 LB</span> <small><span class="w1">454 g</span><span class="w2" hidden>907 g</span></small></dd></div>
+    <div class="t-row"><dt>Serves</dt><dd><span class="w1">4</span><span class="w2" hidden>8</span></dd></div>
+    <div class="t-row"><dt>Vessel</dt><dd>SKILLET</dd></div>
+    <div class="t-row"><dt>Time</dt><dd>35 ACT · 40 TOT</dd></div>
+    <div class="t-row"><dt>Cook to</dt><dd>160°F · 71°C</dd></div>
+    <div class="t-row"><dt>Heat</dt><dd>MILD</dd></div>
+  </dl>
+  <div class="t-price"><span>PRICE / HEAD</span><strong>$3.31</strong></div>
+  <div class="t-foot"><span class="bars" aria-hidden="true"><i style="--w:3"></i><b style="--w:1"></b><i style="--w:3"></i><b style="--w:1"></b><i style="--w:3"></i><b style="--w:2"></b><i style="--w:3"></i><b style="--w:1"></b><i style="--w:1"></i><b style="--w:2"></b><i style="--w:2"></i><b style="--w:1"></b><i style="--w:2"></i><b style="--w:2"></b><i style="--w:1"></i><b style="--w:2"></b><i style="--w:1"></i><b style="--w:2"></b><i style="--w:2"></i><b style="--w:2"></b><i style="--w:3"></i><b style="--w:2"></b><i style="--w:3"></i><b style="--w:2"></b><i style="--w:1"></i><b style="--w:2"></b><i style="--w:2"></i><b style="--w:2"></b><i style="--w:2"></i><b style="--w:2"></b><i style="--w:1"></i><b style="--w:2"></b><i style="--w:1"></i><b style="--w:2"></b><i style="--w:3"></i><b style="--w:2"></b><i style="--w:3"></i><b style="--w:1"></b><i style="--w:3"></i><b style="--w:1"></b><i style="--w:2"></i><b style="--w:2"></b><i style="--w:1"></i><b style="--w:2"></b></span><span class="ean">0 45400 47764 4</span></div>
+  <span class="t-stamp" aria-hidden="true">WEEKNIGHT</span>
+</div>
+      <section class="shop">
+        <h3>Shopping</h3>
+        <h4>Fresh</h4>
+        <ul><li><span class="it"><span class="q" data-a="1 lb" data-b="2 lb">1 lb</span> ground beef, 85/15 <span class="m" data-a="454 g" data-b="907 g">454 g</span></span><span class="pr"><span class="c1">$7.06</span><span class="c2" hidden>$14.12</span><abbr class="src s-bls" title="All uncooked ground beef (used for 85/15)">BLS</abbr></span></li>
+<li><span class="it"><span class="q" data-a="2" data-b="4">2</span> medium potatoes <span class="m" data-a="340 g" data-b="680 g">340 g</span></span><span class="pr"><span class="c1">$0.74</span><span class="c2" hidden>$1.48</span><abbr class="src s-bls" title="Potatoes, white">BLS</abbr></span></li>
+<li><span class="it"><span class="q" data-a="1" data-b="2">1</span> <span data-a="medium onion" data-b="medium onions">medium onion</span> <span class="m" data-a="150 g" data-b="300 g">150 g</span></span><span class="pr"><span class="c1">$0.49</span><span class="c2" hidden>$0.99</span><abbr class="src s-est" title="Yellow or white onions, loose">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="2" data-b="4">2</span> eggs</span><span class="pr"><span class="c1">$0.38</span><span class="c2" hidden>$0.76</span><abbr class="src s-bls" title="Eggs, grade A, large, $2.272 a dozen">BLS</abbr></span></li>
+<li><span class="it"><span class="q" data-a="2" data-b="4">2</span> tomatoes, to serve <span class="m" data-a="300 g" data-b="600 g">300 g</span></span><span class="pr"><span class="c1">$1.32</span><span class="c2" hidden>$2.63</span><abbr class="src s-bls" title="Tomatoes, field grown">BLS</abbr></span></li>
+<li><span class="it">flat-leaf parsley, a handful</span><span class="pr"><span class="c1">$0.49</span><span class="c2" hidden>$0.99</span><abbr class="src s-est" title="Flat-leaf parsley, a bunch">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="4" data-b="8">4</span> pitta or other flatbread</span><span class="pr"><span class="c1">$1.99</span><span class="c2" hidden>$3.99</span><abbr class="src s-est" title="Pitta pockets, 6-pack">EST</abbr></span></li></ul>
+        <h4>Pantry</h4>
+        <ul><li><span class="it"><span class="q" data-a="¼ cup" data-b="½ cup">¼ cup</span> plain dry breadcrumbs <span class="m" data-a="25 g" data-b="50 g">25 g</span></span><span class="pr"><span class="c1">$0.16</span><span class="c2" hidden>$0.31</span><abbr class="src s-est" title="Plain dry breadcrumbs, 15 oz">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="1 tsp" data-b="2 tsp">1 tsp</span> ground turmeric</span><span class="pr"><span class="c1">$0.10</span><span class="c2" hidden>$0.20</span><abbr class="src s-est" title="Ground turmeric">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="¼ tsp" data-b="½ tsp">¼ tsp</span> ground cinnamon</span><span class="pr"><span class="c1">$0.02</span><span class="c2" hidden>$0.04</span><abbr class="src s-est" title="Ground cinnamon">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="1¼ tsp" data-b="2½ tsp">1¼ tsp</span> salt</span><span class="pr"><span class="c1">$0.01</span><span class="c2" hidden>$0.03</span><abbr class="src s-est" title="Table salt">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="½ tsp" data-b="1 tsp">½ tsp</span> black pepper</span><span class="pr"><span class="c1">$0.02</span><span class="c2" hidden>$0.04</span><abbr class="src s-est" title="Ground black pepper">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="3 tbsp" data-b="6 tbsp">3 tbsp</span> plain (all-purpose) flour, for coating <span class="m" data-a="25 g" data-b="50 g">25 g</span></span><span class="pr"><span class="c1">$0.03</span><span class="c2" hidden>$0.06</span><abbr class="src s-bls" title="Flour, white, all purpose">BLS</abbr></span></li>
+<li><span class="it"><span class="q" data-a="½ cup" data-b="1 cup">½ cup</span> vegetable oil, for shallow frying <span class="m" data-a="120 ml" data-b="240 ml">120 ml</span></span><span class="pr"><span class="c1">$0.42</span><span class="c2" hidden>$0.83</span><abbr class="src s-est" title="Vegetable oil, 48 fl oz">EST</abbr></span></li></ul>
+        <p class="basket"><span>Basket at natural yield</span> <strong><span class="c1">$13.23</span><span class="c2" hidden>$26.47</span></strong> <span class="ph">$3.31 a head · 72% of it at official average prices</span></p>
+      </section>
+      <section class="subs">
+        <h3>If you don't have it</h3>
+        <p><b>Boiled potato.</b> Labsalliebe boils the potatoes in their skins, cools them and grates them.<sup class="ref"><a href="#src-20" aria-label="Source 20">20</a></sup> That gives a softer, smoother kotlet and adds about 30 minutes.</p><p><b>Turkey or chicken.</b> Some families use chicken.<sup class="ref"><a href="#src-20" aria-label="Source 20">20</a></sup> Ground turkey 93/7 works too; add 1 tbsp oil to the mix or it fries dry.</p><p><b>Lamb.</b> Used by some families.<sup class="ref"><a href="#src-20" aria-label="Source 20">20</a></sup> Richer, and closer to many Iranian versions.</p>
+      </section>
+    </aside>
+    <div class="main">
+      <div class="headnote"><p>Mince, potato, onion and egg, seasoned with turmeric and shaped into thin ovals, then fried until the outside is dark and crisp. Labsalliebe calls it a true classic of Persian home cooking, with a version in every family; it is eaten hot or cold, with bread, herbs, tomatoes and pickles, and packed for picnics.<sup class="ref"><a href="#src-20" aria-label="Source 20">20</a></sup> Wikipedia describes the shape as a leaf, lightly floured and fried.<sup class="ref"><a href="#src-15" aria-label="Source 15">15</a></sup></p><p>The name belongs to the European cutlet family, from the French <i>côtelette</i>.<sup class="ref"><a href="#src-15" aria-label="Source 15">15</a></sup> Origin dates circulate online, but none we found cites a source, so they are left out here.</p><p class="checked"><b>Checked.</b> Origin dates unsourced and omitted. Families split on the potato: some boil and grate it, others grate it raw.<sup class="ref"><a href="#src-20" aria-label="Source 20">20</a></sup> This version grates it raw.</p></div>
+      <section class="method">
+        <h3>Method</h3>
+        <p class="tech">This recipe works the mince raw into a mixture, so it skips <a href="#browning">Browning a pound</a>.</p>
+        <ol><li>Peel and coarsely grate the potatoes and the onion. Pile them in a clean tea towel and wring it hard over the sink until no more liquid comes out. This is the step that decides whether the kotlet hold together.</li><li>Mix the potato and onion with the beef, eggs, breadcrumbs, turmeric, cinnamon, salt and pepper until even. Squeeze a handful: it should hold its shape. If it slumps, work in another 2 tbsp breadcrumbs.</li><li>Heat the oil in the skillet over medium-high heat until it shimmers; there should be about 5 mm in the pan. Put the flour on a plate.</li><li>With wet hands, take a piece the size of a golf ball, flatten it into an oval about 1 cm (⅜ in) thick and 10 cm (4 in) long, and dip both sides lightly in flour. Fry 4 or 5 at a time, 3–4 minutes a side, until deep brown and crisp at the edges. Drain on kitchen paper.</li><li>Serve with the bread, sliced tomatoes, parsley and pickles.</li></ol>
+      </section>
+      <dl class="notes">
+        <div class="n-safety"><dt>Safety</dt><dd>Cook ground beef to at least <b>160°F / 71°C</b> in the thickest part, read on an instant-read thermometer.<sup class="ref"><a href="#src-1" aria-label="Source 1">1</a></sup></dd></div>
+        <div class="n-mild"><dt>Mild portion</dt><dd>No chilli, so the whole dish is mild.</dd></div>
+        <div class="n-scale changes"><dt>Two pounds <span class="tag">Doubling changes the method</span></dt><dd>2 lb makes six batches, about 45 minutes at the stove. Keep cooked ones warm on the sheet tray in a 120°C (250°F) oven. At that size it is no longer a weeknight dish.</dd></div>
+        <div class="n-left"><dt>Leftovers</dt><dd>Good cold, which is how they go to picnics and into lunchboxes.<sup class="ref"><a href="#src-20" aria-label="Source 20">20</a></sup> Keep 3–4 days in the fridge; cooked patties freeze for 1–3 months.<sup class="ref"><a href="#src-2" aria-label="Source 2">2</a></sup></dd></div>
+      </dl>
+    </div>
+  </div>
+</article>
+<article class="recipe" id="pakistan" data-protein="Beef" data-tier="Weeknight" data-vessel="dutch">
+  <header class="r-head">
+    <p class="place"><span>Pakistan</span><span class="dot">·</span><span>South Asia</span></p>
+    <h2>Qeema matar</h2>
+    <p class="local"><bdi lang="ur">قیمہ مٹر</bdi> <span class="roman">qeema matar</span></p>
+    <p class="gloss">Mince and peas in a tomato and yoghurt masala</p>
+  </header>
+  <div class="cols">
+    <aside class="side" aria-label="Ticket, shopping and substitutions">
+      
+<div class="ticket" role="group" aria-label="Scale ticket for Qeema matar">
+  <div class="t-head"><span>ONE POUND</span><span>COUNTER 07</span></div>
+  <dl class="t-grid">
+    <div class="t-row t-wide"><dt>Product</dt><dd>GROUND BEEF 80/20</dd></div>
+    <div class="t-row t-wide"><dt>For</dt><dd>QEEMA MATAR · PAKISTAN</dd></div>
+    <div class="t-row t-wt"><dt>Net wt</dt><dd><span class="w1">1.00 LB</span><span class="w2" hidden>2.00 LB</span> <small><span class="w1">454 g</span><span class="w2" hidden>907 g</span></small></dd></div>
+    <div class="t-row"><dt>Serves</dt><dd><span class="w1">4</span><span class="w2" hidden>8</span></dd></div>
+    <div class="t-row"><dt>Vessel</dt><dd>DUTCH OVEN</dd></div>
+    <div class="t-row"><dt>Time</dt><dd>25 ACT · 40 TOT</dd></div>
+    <div class="t-row"><dt>Cook to</dt><dd>160°F · 71°C</dd></div>
+    <div class="t-row"><dt>Heat</dt><dd>MEDIUM</dd></div>
+  </dl>
+  <div class="t-price"><span>PRICE / HEAD</span><strong>$3.12</strong></div>
+  <div class="t-foot"><span class="bars" aria-hidden="true"><i style="--w:3"></i><b style="--w:2"></b><i style="--w:3"></i><b style="--w:2"></b><i style="--w:2"></i><b style="--w:2"></b><i style="--w:1"></i><b style="--w:1"></b><i style="--w:3"></i><b style="--w:1"></b><i style="--w:3"></i><b style="--w:1"></b><i style="--w:2"></i><b style="--w:2"></b><i style="--w:3"></i><b style="--w:2"></b><i style="--w:3"></i><b style="--w:1"></b><i style="--w:3"></i><b style="--w:1"></b><i style="--w:2"></i><b style="--w:2"></b><i style="--w:3"></i><b style="--w:1"></b><i style="--w:2"></i><b style="--w:1"></b><i style="--w:1"></i><b style="--w:2"></b><i style="--w:2"></i><b style="--w:2"></b><i style="--w:2"></i><b style="--w:2"></b><i style="--w:1"></i><b style="--w:1"></b><i style="--w:2"></i><b style="--w:2"></b><i style="--w:1"></i><b style="--w:1"></b><i style="--w:1"></i><b style="--w:1"></b><i style="--w:1"></i><b style="--w:1"></b><i style="--w:2"></i><b style="--w:1"></b></span><span class="ean">0 45400 14206 4</span></div>
+  <span class="t-stamp" aria-hidden="true">WEEKNIGHT</span>
+</div>
+      <section class="shop">
+        <h3>Shopping</h3>
+        <h4>Fresh</h4>
+        <ul><li><span class="it"><span class="q" data-a="1 lb" data-b="2 lb">1 lb</span> ground beef, 80/20 <span class="m" data-a="454 g" data-b="907 g">454 g</span></span><span class="pr"><span class="c1">$6.79</span><span class="c2" hidden>$13.58</span><abbr class="src s-bls" title="Ground beef, 100% beef (used for 80/20)">BLS</abbr></span></li>
+<li><span class="it"><span class="q" data-a="1" data-b="2">1</span> <span data-a="large onion" data-b="large onions">large onion</span> <span class="m" data-a="200 g" data-b="400 g">200 g</span></span><span class="pr"><span class="c1">$0.66</span><span class="c2" hidden>$1.31</span><abbr class="src s-est" title="Yellow or white onions, loose">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="4" data-b="8">4</span> garlic cloves</span><span class="pr"><span class="c1">$0.32</span><span class="c2" hidden>$0.64</span><abbr class="src s-est" title="Garlic, $0.75 a head of about 10 cloves">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="1 tbsp" data-b="2 tbsp">1 tbsp</span> fresh ginger, grated <span class="m" data-a="15 g" data-b="30 g">15 g</span></span><span class="pr"><span class="c1">$0.05</span><span class="c2" hidden>$0.10</span><abbr class="src s-est" title="Fresh ginger, $3.99 a lb">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="2" data-b="4">2</span> green chillies (serrano)</span><span class="pr"><span class="c1">$0.20</span><span class="c2" hidden>$0.40</span><abbr class="src s-est" title="Serrano or jalapeño chilli">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="2" data-b="4">2</span> tomatoes <span class="m" data-a="250 g" data-b="500 g">250 g</span></span><span class="pr"><span class="c1">$1.10</span><span class="c2" hidden>$2.20</span><abbr class="src s-bls" title="Tomatoes, field grown">BLS</abbr></span></li>
+<li><span class="it">coriander (cilantro), a handful</span><span class="pr"><span class="c1">$0.49</span><span class="c2" hidden>$0.99</span><abbr class="src s-est" title="Coriander (cilantro), a bunch">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="1" data-b="2">1</span> <span data-a="lemon" data-b="lemons">lemon</span></span><span class="pr"><span class="c1">$0.53</span><span class="c2" hidden>$1.06</span><abbr class="src s-bls" title="Lemons, $2.128 a lb, about 4 to the lb">BLS</abbr></span></li></ul>
+        <h4>Pantry</h4>
+        <ul><li><span class="it"><span class="q" data-a="1 cup" data-b="2 cups">1 cup</span> frozen peas <span class="m" data-a="140 g" data-b="280 g">140 g</span></span><span class="pr"><span class="c1">$0.62</span><span class="c2" hidden>$1.24</span><abbr class="src s-est" title="Frozen peas, 16 oz bag (about 3.2 cups)">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="3 tbsp" data-b="6 tbsp">3 tbsp</span> plain yoghurt <span class="m" data-a="45 g" data-b="90 g">45 g</span></span><span class="pr"><span class="c1">$0.16</span><span class="c2" hidden>$0.33</span><abbr class="src s-est" title="Plain whole-milk yoghurt, 32 oz">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="3 tbsp" data-b="6 tbsp">3 tbsp</span> vegetable oil <span class="m" data-a="45 ml" data-b="90 ml">45 ml</span></span><span class="pr"><span class="c1">$0.16</span><span class="c2" hidden>$0.31</span><abbr class="src s-est" title="Vegetable oil, 48 fl oz">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="1 tsp" data-b="2 tsp">1 tsp</span> cumin seeds</span><span class="pr"><span class="c1">$0.10</span><span class="c2" hidden>$0.20</span><abbr class="src s-est" title="Cumin seeds">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="2 tsp" data-b="4 tsp">2 tsp</span> ground coriander</span><span class="pr"><span class="c1">$0.20</span><span class="c2" hidden>$0.40</span><abbr class="src s-est" title="Ground coriander">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="½ tsp" data-b="1 tsp">½ tsp</span> ground turmeric</span><span class="pr"><span class="c1">$0.05</span><span class="c2" hidden>$0.10</span><abbr class="src s-est" title="Ground turmeric">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="1 tsp" data-b="2 tsp">1 tsp</span> sweet paprika</span><span class="pr"><span class="c1">$0.10</span><span class="c2" hidden>$0.20</span><abbr class="src s-est" title="Sweet paprika">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="½ tsp" data-b="1 tsp">½ tsp</span> cayenne pepper</span><span class="pr"><span class="c1">$0.04</span><span class="c2" hidden>$0.08</span><abbr class="src s-est" title="Cayenne pepper">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="1 tsp" data-b="2 tsp">1 tsp</span> garam masala</span><span class="pr"><span class="c1">$0.18</span><span class="c2" hidden>$0.36</span><abbr class="src s-est" title="Garam masala">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="½ tsp" data-b="1 tsp">½ tsp</span> black pepper</span><span class="pr"><span class="c1">$0.02</span><span class="c2" hidden>$0.04</span><abbr class="src s-est" title="Ground black pepper">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="1¼ tsp" data-b="2½ tsp">1¼ tsp</span> salt</span><span class="pr"><span class="c1">$0.01</span><span class="c2" hidden>$0.03</span><abbr class="src s-est" title="Table salt">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="1½ cups" data-b="3 cups">1½ cups</span> long-grain rice, or roti to serve <span class="m" data-a="285 g" data-b="570 g">285 g</span></span><span class="pr"><span class="c1">$0.70</span><span class="c2" hidden>$1.40</span><abbr class="src s-bls" title="Rice, white, long grain, uncooked (also used as a proxy for short-grain)">BLS</abbr></span></li></ul>
+        <p class="basket"><span>Basket at natural yield</span> <strong><span class="c1">$12.49</span><span class="c2" hidden>$24.98</span></strong> <span class="ph">$3.12 a head · 73% of it at official average prices</span></p>
+      </section>
+      <section class="subs">
+        <h3>If you don't have it</h3>
+        <p><b>Chilli powder.</b> The red chilli powder used in Pakistan is plain ground chilli. US "chili powder" is a Tex-Mex blend with cumin and oregano, so do not use it here. Paprika and cayenne together give the colour and heat.</p><p><b>Chicken.</b> Ground chicken works and Tea for Turmeric lists it as an option.<sup class="ref"><a href="#src-22" aria-label="Source 22">22</a></sup> Cut the simmer to 5 minutes and expect a lighter dish.</p><p><b>Yoghurt.</b> Leave it out and add another tomato. The sauce is sharper and less rounded.</p>
+      </section>
+    </aside>
+    <div class="main">
+      <div class="headnote"><p>Minced meat cooked with onion, ginger, garlic, tomato and spices, with peas stirred through at the end. It belongs to the whole Indian subcontinent and is commonly cooked in North Indian and Pakistani homes; Pakistan spells it with a <i>q</i>, after the Urdu letter <bdi lang='ur'>ق</bdi>.<sup class="ref"><a href="#src-21" aria-label="Source 21">21</a></sup> Goat, lamb and beef are all used.<sup class="ref"><a href="#src-21" aria-label="Source 21">21</a></sup></p><p>Wikipedia links the dish to the Mughal court, but the claim carries no citation, so this book does not repeat it as fact.<sup class="ref"><a href="#src-21" aria-label="Source 21">21</a></sup> The writer behind Tea for Turmeric grew up eating it almost weekly and makes it with beef of about 20% fat, the version followed here.<sup class="ref"><a href="#src-22" aria-label="Source 22">22</a></sup></p><p class="checked"><b>Checked.</b> Mughal-court origin is uncited and treated as unconfirmed.<sup class="ref"><a href="#src-21" aria-label="Source 21">21</a></sup> Beef is attributed to Pakistan because beef keema is ordinary home food there; the dish itself is shared across the border.</p></div>
+      <section class="method">
+        <h3>Method</h3>
+        
+        <ol><li>Start the rice in the saucepan. Heat the oil in the Dutch oven over medium-high heat, add the cumin seeds and let them sizzle for 20 seconds. Add the thinly sliced onion and cook 6–7 minutes, stirring often, until deep golden. Pale onion gives a pale, sweetish keema, so give it the time.</li><li>Add the minced garlic and the ginger and stir for 1 minute.</li><li>Add the beef and break it up, cooking until no pink remains and the water it gives off has evaporated, about 5 minutes. With the onions in the pot it will not crust the way it would alone (<a href="#browning">Browning a pound</a>); you are listening for the sizzle to come back.</li><li>Add the chopped tomatoes, yoghurt, ground coriander, turmeric, paprika, cayenne and salt. Cook, stirring, about 5 minutes, until the tomatoes collapse and oil glistens at the edges.</li><li>Add 120 ml (½ cup) water, put the lid on and simmer on low for 8 minutes.</li><li>Stir in the peas and the slit green chillies, cover again and cook 5 minutes, until the peas are tender.</li><li>Off the heat, stir in the garam masala, black pepper and chopped coriander. Leave it with the lid on for 2 minutes. Serve with rice or roti, and lemon to squeeze over.</li></ol>
+      </section>
+      <dl class="notes">
+        <div class="n-safety"><dt>Safety</dt><dd>Cook ground beef to at least <b>160°F / 71°C</b> in the thickest part, read on an instant-read thermometer.<sup class="ref"><a href="#src-1" aria-label="Source 1">1</a></sup></dd></div>
+        <div class="n-mild"><dt>Mild portion</dt><dd>Leave the cayenne out at step 4. Lift out a portion at the end of step 6 before the green chillies go in, then add the chillies and the cayenne to the pot and cook 3 minutes more. The paprika keeps the colour, and the mild portion is a good dish.</dd></div>
+        <div class="n-scale"><dt>Two pounds <span class="tag">Doubles as written</span></dt><dd>The Dutch oven holds 2 lb comfortably. The meat takes about 10 minutes to lose its water at step 3, and the simmer needs 5 minutes more.</dd></div>
+        <div class="n-left"><dt>Leftovers</dt><dd>Keeps 3–4 days in the fridge and freezes for 2–3 months; the peas soften.<sup class="ref"><a href="#src-2" aria-label="Source 2">2</a></sup></dd></div>
+      </dl>
+    </div>
+  </div>
+</article>
+<article class="recipe" id="china" data-protein="Pork" data-tier="Weekend" data-vessel="dutch">
+  <header class="r-head">
+    <p class="place"><span>China</span><span class="dot">·</span><span>East Asia</span></p>
+    <h2>Clear-braised lion's head</h2>
+    <p class="local"><bdi lang="zh">清炖狮子头</bdi> <span class="roman">qīngdùn shīzitóu</span></p>
+    <p class="gloss">Large, tender pork meatballs braised with napa cabbage</p>
+  </header>
+  <div class="cols">
+    <aside class="side" aria-label="Ticket, shopping and substitutions">
+      
+<div class="ticket" role="group" aria-label="Scale ticket for Clear-braised lion&#x27;s head">
+  <div class="t-head"><span>ONE POUND</span><span>COUNTER 08</span></div>
+  <dl class="t-grid">
+    <div class="t-row t-wide"><dt>Product</dt><dd>GROUND PORK</dd></div>
+    <div class="t-row t-wide"><dt>For</dt><dd>CLEAR-BRAISED LION&#x27;S HEAD · CHINA</dd></div>
+    <div class="t-row t-wt"><dt>Net wt</dt><dd><span class="w1">1.00 LB</span><span class="w2" hidden>2.00 LB</span> <small><span class="w1">454 g</span><span class="w2" hidden>907 g</span></small></dd></div>
+    <div class="t-row"><dt>Serves</dt><dd><span class="w1">4</span><span class="w2" hidden>8</span></dd></div>
+    <div class="t-row"><dt>Vessel</dt><dd>DUTCH OVEN</dd></div>
+    <div class="t-row"><dt>Time</dt><dd>25 ACT · 90 TOT</dd></div>
+    <div class="t-row"><dt>Cook to</dt><dd>160°F · 71°C</dd></div>
+    <div class="t-row"><dt>Heat</dt><dd>MILD</dd></div>
+  </dl>
+  <div class="t-price"><span>PRICE / HEAD</span><strong>$2.53</strong></div>
+  <div class="t-foot"><span class="bars" aria-hidden="true"><i style="--w:3"></i><b style="--w:1"></b><i style="--w:1"></i><b style="--w:1"></b><i style="--w:1"></i><b style="--w:1"></b><i style="--w:3"></i><b style="--w:2"></b><i style="--w:3"></i><b style="--w:2"></b><i style="--w:2"></i><b style="--w:1"></b><i style="--w:3"></i><b style="--w:2"></b><i style="--w:1"></i><b style="--w:2"></b><i style="--w:1"></i><b style="--w:2"></b><i style="--w:2"></i><b style="--w:1"></b><i style="--w:1"></i><b style="--w:1"></b><i style="--w:2"></i><b style="--w:2"></b><i style="--w:1"></i><b style="--w:2"></b><i style="--w:3"></i><b style="--w:2"></b><i style="--w:2"></i><b style="--w:1"></b><i style="--w:3"></i><b style="--w:2"></b><i style="--w:2"></i><b style="--w:1"></b><i style="--w:1"></i><b style="--w:2"></b><i style="--w:2"></i><b style="--w:2"></b><i style="--w:1"></i><b style="--w:1"></b><i style="--w:3"></i><b style="--w:1"></b><i style="--w:1"></i><b style="--w:2"></b></span><span class="ean">0 45400 07051 3</span></div>
+  <span class="t-stamp" aria-hidden="true">WEEKEND</span>
+</div>
+      <section class="shop">
+        <h3>Shopping</h3>
+        <h4>Fresh</h4>
+        <ul><li><span class="it"><span class="q" data-a="1 lb" data-b="2 lb">1 lb</span> ground pork, the fattiest pack you can find <span class="m" data-a="454 g" data-b="907 g">454 g</span></span><span class="pr"><span class="c1">$3.70</span><span class="c2" hidden>$7.40</span><abbr class="src s-usda" title="Ground pork, 1–2 lb, conventional: 400 stores, Weekly Grocery Store Pork Feature Activity, released 9 Oct 2026">USDA</abbr></span></li>
+<li><span class="it"><span class="q" data-a="1½ lb" data-b="3 lb">1½ lb</span> napa cabbage, small <span class="m" data-a="680 g" data-b="1360 g">680 g</span></span><span class="pr"><span class="c1">$2.69</span><span class="c2" hidden>$5.37</span><abbr class="src s-est" title="Napa cabbage">EST</abbr></span></li>
+<li><span class="it">fresh ginger, a 5 cm (2 in) piece <span class="m" data-a="20 g" data-b="40 g">20 g</span></span><span class="pr"><span class="c1">$0.15</span><span class="c2" hidden>$0.30</span><abbr class="src s-est" title="Fresh ginger, $3.99 a lb">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="3" data-b="6">3</span> spring onions (scallions)</span><span class="pr"><span class="c1">$0.42</span><span class="c2" hidden>$0.85</span><abbr class="src s-est" title="Spring onions (scallions), $0.99 a bunch of about 7">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="1" data-b="2">1</span> <span data-a="egg white" data-b="egg whites">egg white</span></span><span class="pr"><span class="c1">$0.19</span><span class="c2" hidden>$0.38</span><abbr class="src s-bls" title="Eggs, grade A, large, $2.272 a dozen">BLS</abbr></span></li>
+<li><span class="it"><span class="q" data-a="¼ cup" data-b="½ cup">¼ cup</span> jicama, finely diced <span class="m" data-a="40 g" data-b="80 g">40 g</span></span><span class="pr opt">optional</span></li></ul>
+        <h4>Pantry</h4>
+        <ul><li><span class="it"><span class="q" data-a="1 tbsp" data-b="2 tbsp">1 tbsp</span> soy sauce <span class="m" data-a="15 ml" data-b="30 ml">15 ml</span></span><span class="pr"><span class="c1">$0.12</span><span class="c2" hidden>$0.23</span><abbr class="src s-est" title="Soy sauce, 15 fl oz">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="1 tbsp" data-b="2 tbsp">1 tbsp</span> sake, Shaoxing wine or dry sherry <span class="m" data-a="15 ml" data-b="30 ml">15 ml</span></span><span class="pr"><span class="c1">$0.20</span><span class="c2" hidden>$0.40</span><abbr class="src s-est" title="Cooking sake or dry sherry, 750 ml">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="1 tbsp" data-b="2 tbsp">1 tbsp</span> cornflour (cornstarch)</span><span class="pr"><span class="c1">$0.05</span><span class="c2" hidden>$0.10</span><abbr class="src s-est" title="Cornflour (cornstarch), 16 oz">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="½ tsp" data-b="1 tsp">½ tsp</span> sugar</span><span class="pr"><span class="c1">$0.00</span><span class="c2" hidden>$0.01</span><abbr class="src s-bls" title="Sugar, white, $1.019 a lb (12.5 g a tbsp)">BLS</abbr></span></li>
+<li><span class="it"><span class="q" data-a="¾ tsp" data-b="1½ tsp">¾ tsp</span> salt</span><span class="pr"><span class="c1">$0.01</span><span class="c2" hidden>$0.01</span><abbr class="src s-est" title="Table salt">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="¼ tsp" data-b="½ tsp">¼ tsp</span> ground white pepper</span><span class="pr"><span class="c1">$0.03</span><span class="c2" hidden>$0.05</span><abbr class="src s-est" title="Ground white pepper">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="3 cups" data-b="6 cups">3 cups</span> chicken stock <span class="m" data-a="720 ml" data-b="1440 ml">720 ml</span></span><span class="pr"><span class="c1">$1.87</span><span class="c2" hidden>$3.74</span><abbr class="src s-est" title="Chicken stock, 32 fl oz carton">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="1½ cups" data-b="3 cups">1½ cups</span> long-grain rice <span class="m" data-a="285 g" data-b="570 g">285 g</span></span><span class="pr"><span class="c1">$0.70</span><span class="c2" hidden>$1.40</span><abbr class="src s-bls" title="Rice, white, long grain, uncooked (also used as a proxy for short-grain)">BLS</abbr></span></li></ul>
+        <p class="basket"><span>Basket at natural yield</span> <strong><span class="c1">$10.12</span><span class="c2" hidden>$20.25</span></strong> <span class="ph">$2.53 a head · 45% of it at official average prices</span></p>
+      </section>
+      <section class="subs">
+        <h3>If you don't have it</h3>
+        <p><b>Water chestnut.</b> The traditional crunch.<sup class="ref"><a href="#src-23" aria-label="Source 23">23</a></sup> Jicama, already bought for the xíu mại, is close; tinned water chestnuts are closer still but are a single-use tin.</p><p><b>Shaoxing wine.</b> The classic seasoning.<sup class="ref"><a href="#src-24" aria-label="Source 24">24</a></sup> Sake from the soboro recipe or dry sherry are good substitutes; leaving it out costs a little fragrance.</p><p><b>Red-braised.</b> For the Zhenjiang-style red version, add 2 tbsp soy and 1 tsp sugar to the stock.<sup class="ref"><a href="#src-23" aria-label="Source 23">23</a></sup></p>
+      </section>
+    </aside>
+    <div class="main">
+      <div class="headnote"><p>Four large, soft pork meatballs, said to look like the head of a Chinese guardian lion, braised gently under napa cabbage. The dish belongs to the Huaiyang cooking of eastern China, linked to Yangzhou and Zhenjiang. The plain white version, stewed with cabbage, is more common in Yangzhou; the soy-braised red version is more common in Zhenjiang.<sup class="ref"><a href="#src-23" aria-label="Source 23">23</a></sup> It is often cooked for the New Year; China Sichuan Food's author makes four, for luck.<sup class="ref"><a href="#src-24" aria-label="Source 24">24</a></sup></p><p>The story that the dish goes back to the Sui dynasty is folklore with no evidence behind it. The earliest well-documented recipes are from the Qing dynasty.<sup class="ref"><a href="#src-23" aria-label="Source 23">23</a></sup></p><p class="checked"><b>Checked.</b> The Sui-dynasty legend is treated as myth, following Wikipedia's sources. The clear-braised version is used here to keep it distinct from the red-braised pork in <i>The Heavy Pot</i>.</p></div>
+      <section class="method">
+        <h3>Method</h3>
+        <p class="tech">This recipe works the mince raw into a mixture, so it skips <a href="#browning">Browning a pound</a>.</p>
+        <ol><li>Make ginger-scallion water: slice the ginger and 2 spring onions, crush them in a small bowl with 4 tbsp cold water and leave 10 minutes. Squeeze them out and keep the water.</li><li>Put the pork in a bowl with the salt, white pepper, sugar, soy and sake. Stir hard in one direction with chopsticks or a wooden spoon, adding the ginger-scallion water a spoonful at a time as each is absorbed, for 3–4 minutes, until the mince turns paler, sticky and stringy.</li><li>Add the egg white, cornflour and jicama and stir 1 minute more. Pick up the whole mass and throw it back into the bowl 15–20 times. This is what makes the meatballs hold together while staying soft.</li><li>Cut the cabbage stalks into 5 cm (2 in) pieces and spread them over the base of the Dutch oven. Keep the leaves whole.</li><li>With wet hands, divide the pork into four and toss each between your palms into a smooth ball about 7 cm (2¾ in) across. Set them on the cabbage stalks.</li><li>Pour the stock in around them until they are half-submerged and cover them with the cabbage leaves. Bring slowly to a bare simmer over medium-low heat: a few lazy bubbles, never a boil, which breaks the meatballs apart. Lid on, lowest heat, 60 minutes.</li><li>Taste the broth and salt it. Serve each meatball in a bowl with cabbage and broth, with rice alongside, and the last spring onion sliced over.</li></ol>
+      </section>
+      <dl class="notes">
+        <div class="n-safety"><dt>Safety</dt><dd>Cook ground pork to at least <b>160°F / 71°C</b> in the thickest part, read on an instant-read thermometer.<sup class="ref"><a href="#src-1" aria-label="Source 1">1</a></sup></dd></div>
+        <div class="n-mild"><dt>Mild portion</dt><dd>No chilli, so the whole dish is mild.</dd></div>
+        <div class="n-scale changes"><dt>Two pounds <span class="tag">Doubling changes the method</span></dt><dd>Eight large meatballs will not fit in one layer in a 24 cm pot. Make eight smaller balls (about 5 cm, 2 in) and braise 45 minutes, or stack two layers with cabbage leaves between.</dd></div>
+        <div class="n-left"><dt>Leftovers</dt><dd>Reheat gently in the broth. Keeps 3–4 days in the fridge; the meatballs freeze in their broth for 2–3 months.<sup class="ref"><a href="#src-2" aria-label="Source 2">2</a></sup></dd></div>
+      </dl>
+    </div>
+  </div>
+</article>
+<article class="recipe" id="vietnam" data-protein="Pork" data-tier="Weeknight" data-vessel="dutch">
+  <header class="r-head">
+    <p class="place"><span>Vietnam</span><span class="dot">·</span><span>Southeast Asia</span></p>
+    <h2>Xíu mại</h2>
+    <p class="local"><bdi lang="vi">Xíu mại sốt cà chua</bdi></p>
+    <p class="gloss">Pork meatballs simmered in tomato sauce, eaten with bread or rice</p>
+  </header>
+  <div class="cols">
+    <aside class="side" aria-label="Ticket, shopping and substitutions">
+      
+<div class="ticket" role="group" aria-label="Scale ticket for Xíu mại">
+  <div class="t-head"><span>ONE POUND</span><span>COUNTER 09</span></div>
+  <dl class="t-grid">
+    <div class="t-row t-wide"><dt>Product</dt><dd>GROUND PORK</dd></div>
+    <div class="t-row t-wide"><dt>For</dt><dd>XÍU MẠI · VIETNAM</dd></div>
+    <div class="t-row t-wt"><dt>Net wt</dt><dd><span class="w1">1.00 LB</span><span class="w2" hidden>2.00 LB</span> <small><span class="w1">454 g</span><span class="w2" hidden>907 g</span></small></dd></div>
+    <div class="t-row"><dt>Serves</dt><dd><span class="w1">4</span><span class="w2" hidden>8</span></dd></div>
+    <div class="t-row"><dt>Vessel</dt><dd>DUTCH OVEN</dd></div>
+    <div class="t-row"><dt>Time</dt><dd>25 ACT · 40 TOT</dd></div>
+    <div class="t-row"><dt>Cook to</dt><dd>160°F · 71°C</dd></div>
+    <div class="t-row"><dt>Heat</dt><dd>MILD</dd></div>
+  </dl>
+  <div class="t-price"><span>PRICE / HEAD</span><strong>$3.06</strong></div>
+  <div class="t-foot"><span class="bars" aria-hidden="true"><i style="--w:1"></i><b style="--w:1"></b><i style="--w:2"></i><b style="--w:2"></b><i style="--w:3"></i><b style="--w:1"></b><i style="--w:2"></i><b style="--w:2"></b><i style="--w:2"></i><b style="--w:1"></b><i style="--w:3"></i><b style="--w:2"></b><i style="--w:3"></i><b style="--w:1"></b><i style="--w:1"></i><b style="--w:1"></b><i style="--w:2"></i><b style="--w:1"></b><i style="--w:1"></i><b style="--w:1"></b><i style="--w:2"></i><b style="--w:1"></b><i style="--w:1"></i><b style="--w:2"></b><i style="--w:1"></i><b style="--w:1"></b><i style="--w:1"></i><b style="--w:2"></b><i style="--w:2"></i><b style="--w:2"></b><i style="--w:3"></i><b style="--w:2"></b><i style="--w:2"></i><b style="--w:1"></b><i style="--w:3"></i><b style="--w:2"></b><i style="--w:2"></i><b style="--w:1"></b><i style="--w:3"></i><b style="--w:1"></b><i style="--w:3"></i><b style="--w:1"></b><i style="--w:3"></i><b style="--w:1"></b></span><span class="ean">0 45400 52454 6</span></div>
+  <span class="t-stamp" aria-hidden="true">WEEKNIGHT</span>
+</div>
+      <section class="shop">
+        <h3>Shopping</h3>
+        <h4>Fresh</h4>
+        <ul><li><span class="it"><span class="q" data-a="1 lb" data-b="2 lb">1 lb</span> ground pork <span class="m" data-a="454 g" data-b="907 g">454 g</span></span><span class="pr"><span class="c1">$3.70</span><span class="c2" hidden>$7.40</span><abbr class="src s-usda" title="Ground pork, 1–2 lb, conventional: 400 stores, Weekly Grocery Store Pork Feature Activity, released 9 Oct 2026">USDA</abbr></span></li>
+<li><span class="it"><span class="q" data-a="¾ cup" data-b="1½ cups">¾ cup</span> jicama, finely diced <span class="m" data-a="100 g" data-b="200 g">100 g</span></span><span class="pr"><span class="c1">$0.44</span><span class="c2" hidden>$0.88</span><abbr class="src s-est" title="Jicama">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="½" data-b="1">½</span> small onion <span class="m" data-a="70 g" data-b="140 g">70 g</span></span><span class="pr"><span class="c1">$0.23</span><span class="c2" hidden>$0.46</span><abbr class="src s-est" title="Yellow or white onions, loose">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="1" data-b="2">1</span> <span data-a="egg" data-b="eggs">egg</span></span><span class="pr"><span class="c1">$0.19</span><span class="c2" hidden>$0.38</span><abbr class="src s-bls" title="Eggs, grade A, large, $2.272 a dozen">BLS</abbr></span></li>
+<li><span class="it"><span class="q" data-a="5" data-b="10">5</span> ripe tomatoes <span class="m" data-a="700 g" data-b="1400 g">700 g</span></span><span class="pr"><span class="c1">$3.07</span><span class="c2" hidden>$6.15</span><abbr class="src s-bls" title="Tomatoes, field grown">BLS</abbr></span></li>
+<li><span class="it"><span class="q" data-a="2" data-b="4">2</span> garlic cloves</span><span class="pr"><span class="c1">$0.16</span><span class="c2" hidden>$0.32</span><abbr class="src s-est" title="Garlic, $0.75 a head of about 10 cloves">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="1" data-b="2">1</span> <span data-a="shallot" data-b="shallots">shallot</span></span><span class="pr"><span class="c1">$0.40</span><span class="c2" hidden>$0.80</span><abbr class="src s-est" title="Shallot">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="3" data-b="6">3</span> spring onions (scallions)</span><span class="pr"><span class="c1">$0.42</span><span class="c2" hidden>$0.85</span><abbr class="src s-est" title="Spring onions (scallions), $0.99 a bunch of about 7">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="1 loaf" data-b="2 loaves">1 loaf</span> French bread, or rice</span><span class="pr"><span class="c1">$2.49</span><span class="c2" hidden>$4.98</span><abbr class="src s-est" title="Supermarket French bread">EST</abbr></span></li></ul>
+        <h4>Pantry</h4>
+        <ul><li><span class="it"><span class="q" data-a="2 tbsp + 2 tsp" data-b="5 tbsp + 1 tsp">2 tbsp + 2 tsp</span> fish sauce <span class="m" data-a="40 ml" data-b="80 ml">40 ml</span></span><span class="pr"><span class="c1">$0.79</span><span class="c2" hidden>$1.58</span><abbr class="src s-est" title="Fish sauce, 6.76 fl oz">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="1 tbsp + 2 tsp" data-b="3 tbsp + 1 tsp">1 tbsp + 2 tsp</span> cornflour (cornstarch)</span><span class="pr"><span class="c1">$0.09</span><span class="c2" hidden>$0.17</span><abbr class="src s-est" title="Cornflour (cornstarch), 16 oz">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="1 tbsp + ½ tsp" data-b="2 tbsp + 1 tsp">1 tbsp + ½ tsp</span> sugar</span><span class="pr"><span class="c1">$0.03</span><span class="c2" hidden>$0.07</span><abbr class="src s-bls" title="Sugar, white, $1.019 a lb (12.5 g a tbsp)">BLS</abbr></span></li>
+<li><span class="it"><span class="q" data-a="½ tsp" data-b="1 tsp">½ tsp</span> salt</span><span class="pr"><span class="c1">$0.01</span><span class="c2" hidden>$0.01</span><abbr class="src s-est" title="Table salt">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="½ tsp" data-b="1 tsp">½ tsp</span> black pepper</span><span class="pr"><span class="c1">$0.02</span><span class="c2" hidden>$0.04</span><abbr class="src s-est" title="Ground black pepper">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="1 tsp" data-b="2 tsp">1 tsp</span> toasted sesame oil <span class="m" data-a="5 ml" data-b="10 ml">5 ml</span></span><span class="pr"><span class="c1">$0.08</span><span class="c2" hidden>$0.17</span><abbr class="src s-est" title="Toasted sesame oil, 8 fl oz">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="2 tbsp" data-b="4 tbsp">2 tbsp</span> vegetable oil <span class="m" data-a="30 ml" data-b="60 ml">30 ml</span></span><span class="pr"><span class="c1">$0.10</span><span class="c2" hidden>$0.21</span><abbr class="src s-est" title="Vegetable oil, 48 fl oz">EST</abbr></span></li></ul>
+        <p class="basket"><span>Basket at natural yield</span> <strong><span class="c1">$12.23</span><span class="c2" hidden>$24.45</span></strong> <span class="ph">$3.06 a head · 57% of it at official average prices</span></p>
+      </section>
+      <section class="subs">
+        <h3>If you don't have it</h3>
+        <p><b>Tinned tomatoes.</b> One 28 oz (794 g) tin of whole tomatoes, crushed by hand, replaces the fresh ones. The sauce is a little sharper; add an extra pinch of sugar.</p><p><b>Prawns.</b> VnExpress adds 100 g of ground prawns (shrimp) to the pork.<sup class="ref"><a href="#src-25" aria-label="Source 25">25</a></sup> Chopped frozen peeled prawns work and give a bouncier meatball.</p><p><b>Jicama.</b> Tinned water chestnuts give the same crunch. Without either, the meatballs are softer but fine.</p>
+      </section>
+    </aside>
+    <div class="main">
+      <div class="headnote"><p>Soft pork meatballs, with jicama for crunch, simmered in a tomato and fish-sauce sauce. Its roots are Chinese, and in Vietnam it became a main dish of minced pork in tomato sauce, eaten with bánh mì or white rice.<sup class="ref"><a href="#src-26" aria-label="Source 26">26</a></sup> VnExpress also serves it with rice vermicelli.<sup class="ref"><a href="#src-25" aria-label="Source 25">25</a></sup></p><p>The name comes from the Chinese dumpling <i>siu mai</i>, though the Vietnamese dish is a different thing: no wrapper, and a sauce.<sup class="ref"><a href="#src-26" aria-label="Source 26">26</a></sup></p><p class="checked"><b>Checked.</b> Chinese origin per Điện máy XANH, which gives no date for the Vietnamese version, so none is given here.<sup class="ref"><a href="#src-26" aria-label="Source 26">26</a></sup></p></div>
+      <section class="method">
+        <h3>Method</h3>
+        <p class="tech">This recipe works the mince raw into a mixture, so it skips <a href="#browning">Browning a pound</a>.</p>
+        <ol><li>Peel the jicama and dice it as finely as you can, about 3 mm. Squeeze it dry in a tea towel. Chop the onion very finely.</li><li>Mix the pork with the jicama, onion, egg, 1 tbsp cornflour, 2 tsp fish sauce, the salt, ½ tsp sugar, the pepper and sesame oil. Stir hard for 2 minutes, until sticky.</li><li>With oiled hands, roll walnut-sized balls, about 20, and set them on a plate.</li><li>Grate the tomatoes on the coarse side of a box grater and throw away the skins.</li><li>Heat the oil in the Dutch oven over medium heat. Cook the sliced shallot and the minced garlic for 1 minute, until fragrant. Add the tomato, 2 tbsp fish sauce, 1 tbsp sugar and 120 ml (½ cup) water and simmer 5 minutes.</li><li>Lower the meatballs into the sauce in one layer. Put the lid on and simmer gently for 15 minutes, turning them once halfway, until firm.</li><li>Mix the remaining 2 tsp cornflour with 2 tsp water, stir it in and simmer 1 minute, until the sauce turns glossy. Finish with sliced spring onions and more pepper. Serve with bread or rice.</li></ol>
+      </section>
+      <dl class="notes">
+        <div class="n-safety"><dt>Safety</dt><dd>Cook ground pork to at least <b>160°F / 71°C</b> in the thickest part, read on an instant-read thermometer.<sup class="ref"><a href="#src-1" aria-label="Source 1">1</a></sup></dd></div>
+        <div class="n-mild"><dt>Mild portion</dt><dd>No chilli goes into the pot; serve sliced chilli at the table for anyone who wants it. The whole pot is mild.</dd></div>
+        <div class="n-scale changes"><dt>Two pounds <span class="tag">Doubling changes the method</span></dt><dd>Forty meatballs make two layers in the Dutch oven. Use double the sauce, do not stir, turn them gently once, and allow 5–10 minutes longer.</dd></div>
+        <div class="n-left"><dt>Leftovers</dt><dd>Keeps 3–4 days and freezes in its sauce for 2–3 months.<sup class="ref"><a href="#src-2" aria-label="Source 2">2</a></sup> Leftovers in a split roll make a good breakfast.</dd></div>
+      </dl>
+    </div>
+  </div>
+</article>
+<article class="recipe" id="japan" data-protein="Chicken" data-tier="Weeknight" data-vessel="skillet">
+  <header class="r-head">
+    <p class="place"><span>Japan</span><span class="dot">·</span><span>East Asia</span></p>
+    <h2>Tori soboro don</h2>
+    <p class="local"><bdi lang="ja">鶏そぼろ丼</bdi> <span class="roman">tori soboro don</span></p>
+    <p class="gloss">Rice under seasoned chicken crumbs, sweet egg and peas</p>
+  </header>
+  <div class="cols">
+    <aside class="side" aria-label="Ticket, shopping and substitutions">
+      
+<div class="ticket" role="group" aria-label="Scale ticket for Tori soboro don">
+  <div class="t-head"><span>ONE POUND</span><span>COUNTER 10</span></div>
+  <dl class="t-grid">
+    <div class="t-row t-wide"><dt>Product</dt><dd>GROUND CHICKEN</dd></div>
+    <div class="t-row t-wide"><dt>For</dt><dd>TORI SOBORO DON · JAPAN</dd></div>
+    <div class="t-row t-wt"><dt>Net wt</dt><dd><span class="w1">1.00 LB</span><span class="w2" hidden>2.00 LB</span> <small><span class="w1">454 g</span><span class="w2" hidden>907 g</span></small></dd></div>
+    <div class="t-row"><dt>Serves</dt><dd><span class="w1">4</span><span class="w2" hidden>8</span></dd></div>
+    <div class="t-row"><dt>Vessel</dt><dd>SKILLET</dd></div>
+    <div class="t-row"><dt>Time</dt><dd>20 ACT · 35 TOT</dd></div>
+    <div class="t-row"><dt>Cook to</dt><dd>165°F · 74°C</dd></div>
+    <div class="t-row"><dt>Heat</dt><dd>MILD</dd></div>
+  </dl>
+  <div class="t-price"><span>PRICE / HEAD</span><strong>$1.92</strong></div>
+  <div class="t-foot"><span class="bars" aria-hidden="true"><i style="--w:3"></i><b style="--w:2"></b><i style="--w:1"></i><b style="--w:2"></b><i style="--w:2"></i><b style="--w:1"></b><i style="--w:1"></i><b style="--w:2"></b><i style="--w:3"></i><b style="--w:1"></b><i style="--w:2"></i><b style="--w:2"></b><i style="--w:2"></i><b style="--w:1"></b><i style="--w:3"></i><b style="--w:1"></b><i style="--w:1"></i><b style="--w:2"></b><i style="--w:1"></i><b style="--w:2"></b><i style="--w:2"></i><b style="--w:2"></b><i style="--w:2"></i><b style="--w:1"></b><i style="--w:2"></i><b style="--w:2"></b><i style="--w:1"></i><b style="--w:1"></b><i style="--w:1"></i><b style="--w:2"></b><i style="--w:2"></i><b style="--w:2"></b><i style="--w:1"></i><b style="--w:1"></b><i style="--w:2"></i><b style="--w:2"></b><i style="--w:3"></i><b style="--w:2"></b><i style="--w:2"></i><b style="--w:2"></b><i style="--w:2"></i><b style="--w:1"></b><i style="--w:2"></i><b style="--w:1"></b></span><span class="ean">0 45400 09805 1</span></div>
+  <span class="t-stamp" aria-hidden="true">WEEKNIGHT</span>
+</div>
+      <section class="shop">
+        <h3>Shopping</h3>
+        <h4>Fresh</h4>
+        <ul><li><span class="it"><span class="q" data-a="1 lb" data-b="2 lb">1 lb</span> ground chicken (not 99% breast) <span class="m" data-a="454 g" data-b="907 g">454 g</span></span><span class="pr"><span class="c1">$3.99</span><span class="c2" hidden>$7.98</span><abbr class="src s-usda" title="Ground chicken, 1–2 lb, conventional: 97 stores, Weekly Grocery Store Chicken Feature Activity, week of 28 Sep 2026">USDA</abbr></span></li>
+<li><span class="it"><span class="q" data-a="4" data-b="8">4</span> eggs</span><span class="pr"><span class="c1">$0.76</span><span class="c2" hidden>$1.51</span><abbr class="src s-bls" title="Eggs, grade A, large, $2.272 a dozen">BLS</abbr></span></li>
+<li><span class="it"><span class="q" data-a="1 tbsp" data-b="2 tbsp">1 tbsp</span> fresh ginger, grated <span class="m" data-a="15 g" data-b="30 g">15 g</span></span><span class="pr"><span class="c1">$0.05</span><span class="c2" hidden>$0.10</span><abbr class="src s-est" title="Fresh ginger, $3.99 a lb">EST</abbr></span></li></ul>
+        <h4>Pantry</h4>
+        <ul><li><span class="it"><span class="q" data-a="1 cup" data-b="2 cups">1 cup</span> frozen peas <span class="m" data-a="140 g" data-b="280 g">140 g</span></span><span class="pr"><span class="c1">$0.62</span><span class="c2" hidden>$1.24</span><abbr class="src s-est" title="Frozen peas, 16 oz bag (about 3.2 cups)">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="3 tbsp" data-b="6 tbsp">3 tbsp</span> soy sauce <span class="m" data-a="45 ml" data-b="90 ml">45 ml</span></span><span class="pr"><span class="c1">$0.35</span><span class="c2" hidden>$0.70</span><abbr class="src s-est" title="Soy sauce, 15 fl oz">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="2 tbsp" data-b="4 tbsp">2 tbsp</span> mirin <span class="m" data-a="30 ml" data-b="60 ml">30 ml</span></span><span class="pr"><span class="c1">$0.43</span><span class="c2" hidden>$0.86</span><abbr class="src s-est" title="Mirin, 10 fl oz">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="2 tbsp" data-b="4 tbsp">2 tbsp</span> sake <span class="m" data-a="30 ml" data-b="60 ml">30 ml</span></span><span class="pr"><span class="c1">$0.40</span><span class="c2" hidden>$0.80</span><abbr class="src s-est" title="Cooking sake or dry sherry, 750 ml">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="2½ tbsp" data-b="5 tbsp">2½ tbsp</span> sugar</span><span class="pr"><span class="c1">$0.07</span><span class="c2" hidden>$0.14</span><abbr class="src s-bls" title="Sugar, white, $1.019 a lb (12.5 g a tbsp)">BLS</abbr></span></li>
+<li><span class="it"><span class="q" data-a="¼ tsp" data-b="½ tsp">¼ tsp</span> salt</span><span class="pr"><span class="c1">$0.00</span><span class="c2" hidden>$0.01</span><abbr class="src s-est" title="Table salt">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="1 tsp" data-b="2 tsp">1 tsp</span> vegetable oil <span class="m" data-a="5 ml" data-b="10 ml">5 ml</span></span><span class="pr"><span class="c1">$0.02</span><span class="c2" hidden>$0.03</span><abbr class="src s-est" title="Vegetable oil, 48 fl oz">EST</abbr></span></li>
+<li><span class="it"><span class="q" data-a="2 cups" data-b="4 cups">2 cups</span> short-grain rice (Calrose) <span class="m" data-a="400 g" data-b="800 g">400 g</span></span><span class="pr"><span class="c1">$0.99</span><span class="c2" hidden>$1.97</span><abbr class="src s-bls" title="Rice, white, long grain, uncooked (also used as a proxy for short-grain)">BLS</abbr></span></li></ul>
+        <p class="basket"><span>Basket at natural yield</span> <strong><span class="c1">$7.67</span><span class="c2" hidden>$15.35</span></strong> <span class="ph">$1.92 a head · 76% of it at official average prices</span></p>
+      </section>
+      <section class="subs">
+        <h3>If you don't have it</h3>
+        <p><b>Turkey.</b> Ground turkey 93/7 cooks the same way and is slightly drier; it soaks up the sauce well.</p><p><b>Pork.</b> Ground pork takes the same seasoning and gives a richer bowl.</p><p><b>Long-grain rice.</b> Looser and drier; the bowl falls apart more. Short-grain Calrose is the ordinary supermarket choice.</p><p><b>Green.</b> Green beans, sliced and boiled 3 minutes, or blanched spinach, in place of the peas.</p>
+      </section>
+    </aside>
+    <div class="main">
+      <div class="headnote"><p><i>Soboro</i> is finely crumbled meat, fish or egg, seasoned and cooked until dry but still tender. Laid over rice it becomes a rice bowl. The usual tricolour version, <i>sanshoku</i>, sets chicken in soy and mirin beside lightly sweetened scrambled egg and something green, often peas.<sup class="ref"><a href="#src-27" aria-label="Source 27">27</a></sup></p><p>It is home food: a quick dinner bowl, and a classic of the bento box, packed cold and eaten at room temperature by children and adults alike.<sup class="ref"><a href="#src-27" aria-label="Source 27">27</a></sup></p><p class="checked"><b>Checked.</b> No origin story is attached to the dish and none is told. Seasonings follow Just One Cookbook.<sup class="ref"><a href="#src-27" aria-label="Source 27">27</a></sup></p></div>
+      <section class="method">
+        <h3>Method</h3>
+        <p class="tech">This recipe works the mince raw into a mixture, so it skips <a href="#browning">Browning a pound</a>.</p>
+        <ol><li>Rinse the rice in the saucepan, swirling and draining, until the water runs nearly clear. Add 600 ml (2½ cups) water, bring to the boil, put the lid on and turn to the lowest heat for 15 minutes. Leave it covered, off the heat, for 10 minutes.</li><li>Put the peas in the skillet with 3 tbsp water and a pinch of salt and cook 3 minutes, until bright. Tip them out.</li><li>Beat the eggs with 1 tbsp of the sugar and the salt. Wipe the skillet, add the oil and set it over low heat. Pour in the eggs and stir constantly with four chopsticks held together, or a whisk, in small circles for 3–4 minutes, until they set into fine, soft crumbs. Tip them out.</li><li>Put the chicken into the cold skillet with the soy, mirin, sake, the remaining 1½ tbsp sugar and the ginger, and stir to break it up before you turn on the heat. Starting cold keeps the crumbs fine.</li><li>Cook over medium heat, stirring constantly, for 8–10 minutes, until the chicken is in small crumbs, opaque all through, and most of the liquid has gone, leaving a glossy coating.</li><li>Fill bowls with rice and lay the chicken, egg and peas over it in three bands.</li></ol>
+      </section>
+      <dl class="notes">
+        <div class="n-safety"><dt>Safety</dt><dd>Cook ground chicken to at least <b>165°F / 74°C</b> in the thickest part, read on an instant-read thermometer.<sup class="ref"><a href="#src-1" aria-label="Source 1">1</a></sup></dd></div>
+        <div class="n-mild"><dt>Mild portion</dt><dd>No chilli, so the whole dish is mild.</dd></div>
+        <div class="n-scale changes"><dt>Two pounds <span class="tag">Doubling changes the method</span></dt><dd>Cook the chicken in one go but expect 15 minutes for the liquid to cook away. Scramble 8 eggs in two rounds.</dd></div>
+        <div class="n-left"><dt>Leftovers</dt><dd>The chicken keeps 3–4 days and freezes for 2–6 months; it is meant to be eaten cold in bento.<sup class="ref"><a href="#src-2" aria-label="Source 2">2</a></sup><sup class="ref"><a href="#src-27" aria-label="Source 27">27</a></sup> The scrambled egg freezes poorly.</dd></div>
+      </dl>
+    </div>
+  </div>
+</article>
+
+<section class="back" id="costs" aria-labelledby="costs-h">
+  <h2 id="costs-h">What it costs</h2>
+  <p class="lede">Ranked by cost per head at natural yield: one pound, four people. Cheapest is Tori soboro don at $1.92 a head; dearest is Pastel de choclo at $3.83.</p>
+  <div class="tscroll">
+  <table class="league">
+    <thead><tr><th scope="col" class="num">Rank</th><th scope="col">Dish</th><th scope="col">Mince</th><th scope="col" class="num">Basket</th><th scope="col" class="num">A head</th><th scope="col" class="num">Official</th></tr></thead>
+    <tbody><tr><td class="num">1</td><th scope="row"><a href="#japan">Tori soboro don</a><span class="mx-c">Japan</span></th>
+<td>Ground chicken</td><td class="num">$7.67</td>
+<td class="num"><span class="barw"><span class="lbar" style="width:50%"></span></span>$1.92</td>
+<td class="num">76%</td></tr>
+<tr><td class="num">2</td><th scope="row"><a href="#china">Clear-braised lion's head</a><span class="mx-c">China</span></th>
+<td>Ground pork</td><td class="num">$10.12</td>
+<td class="num"><span class="barw"><span class="lbar" style="width:66%"></span></span>$2.53</td>
+<td class="num">45%</td></tr>
+<tr><td class="num">3</td><th scope="row"><a href="#poland">Kotlety mielone</a><span class="mx-c">Poland</span></th>
+<td>Ground pork</td><td class="num">$10.32</td>
+<td class="num"><span class="barw"><span class="lbar" style="width:67%"></span></span>$2.58</td>
+<td class="num">55%</td></tr>
+<tr><td class="num">4</td><th scope="row"><a href="#southafrica">Bobotie</a><span class="mx-c">South Africa</span></th>
+<td>85/15 ground beef</td><td class="num">$11.22</td>
+<td class="num"><span class="barw"><span class="lbar" style="width:73%"></span></span>$2.81</td>
+<td class="num">78%</td></tr>
+<tr><td class="num">5</td><th scope="row"><a href="#vietnam">Xíu mại</a><span class="mx-c">Vietnam</span></th>
+<td>Ground pork</td><td class="num">$12.23</td>
+<td class="num"><span class="barw"><span class="lbar" style="width:80%"></span></span>$3.06</td>
+<td class="num">57%</td></tr>
+<tr><td class="num">6</td><th scope="row"><a href="#pakistan">Qeema matar</a><span class="mx-c">Pakistan</span></th>
+<td>80/20 ground beef</td><td class="num">$12.49</td>
+<td class="num"><span class="barw"><span class="lbar" style="width:82%"></span></span>$3.12</td>
+<td class="num">73%</td></tr>
+<tr><td class="num">7</td><th scope="row"><a href="#mexico">Picadillo</a><span class="mx-c">Mexico</span></th>
+<td>80/20 ground beef</td><td class="num">$12.92</td>
+<td class="num"><span class="barw"><span class="lbar" style="width:84%"></span></span>$3.23</td>
+<td class="num">73%</td></tr>
+<tr><td class="num">8</td><th scope="row"><a href="#iran">Kotlet</a><span class="mx-c">Iran</span></th>
+<td>85/15 ground beef</td><td class="num">$13.23</td>
+<td class="num"><span class="barw"><span class="lbar" style="width:86%"></span></span>$3.31</td>
+<td class="num">72%</td></tr>
+<tr><td class="num">9</td><th scope="row"><a href="#egypt">Hawawshi</a><span class="mx-c">Egypt</span></th>
+<td>80/20 ground beef</td><td class="num">$15.17</td>
+<td class="num"><span class="barw"><span class="lbar" style="width:99%"></span></span>$3.79</td>
+<td class="num">52%</td></tr>
+<tr><td class="num">10</td><th scope="row"><a href="#chile">Pastel de choclo</a><span class="mx-c">Chile</span></th>
+<td>85/15 ground beef</td><td class="num">$15.31</td>
+<td class="num"><span class="barw"><span class="lbar" style="width:100%"></span></span>$3.83</td>
+<td class="num">49%</td></tr></tbody>
+  </table>
+  </div>
+  <dl class="method-notes">
+    <dt>How the prices were made</dt>
+    <dd>Each basket charges every ingredient for the amount the recipe uses, worked out in code on 20 October 2026. Optional items are not counted. Each line in the shopping lists carries a badge for its source. Of 150 priced lines, 37 use BLS, 4 USDA and 109 are estimates; the "Official" column above is the share of each basket's cost that comes from BLS or USDA figures.</dd>
+    <dt><abbr class="src s-bls">BLS</abbr> Official average</dt>
+    <dd>Bureau of Labor Statistics Average Price Data, U.S. city average, September 2026.<sup class="ref"><a href="#src-3" aria-label="Source 3">3</a></sup> Ground beef maps by pack: 80/20 uses "ground beef, 100% beef" ($6.79 a lb); 85/15 uses "all uncooked ground beef" ($7.06), the nearest published category. Long-grain rice stands in for short-grain.</dd>
+    <dt><abbr class="src s-usda">USDA</abbr> Advertised average</dt>
+    <dd>BLS publishes nothing for ground pork or ground chicken. Those come from USDA's weekly grocery feature reports: ground pork, conventional 1–2 lb packs, $3.70 a lb across 400 stores (report released 9 October 2026); ground chicken, conventional 1–2 lb packs, $3.99 a lb across 97 stores (week of 28 September 2026).<sup class="ref"><a href="#src-4" aria-label="Source 4">4</a></sup><sup class="ref"><a href="#src-5" aria-label="Source 5">5</a></sup> These are sale prices, so they run below what you would pay on an ordinary day, and the pork and chicken dishes look cheaper than they are.</dd>
+    <dt><abbr class="src s-est">EST</abbr> Estimate</dt>
+    <dd>Everything without an official average (onions, herbs, spices, sauces, bread, frozen vegetables) is an estimated shelf price for an ordinary Washington, DC-area supermarket in October 2026. Supermarket sites refused automated requests, so these are not checked against a live shelf. Treat them as good to roughly 15%.</dd>
+  </dl>
+</section>
+
+<section class="back" id="shelf" aria-labelledby="shelf-h">
+  <h2 id="shelf-h">The shelf</h2>
+  <p class="lede">Every pantry item in the book and the recipes that use it. Items used only once are marked, with what to do instead.</p>
+  <div class="tscroll">
+  <table class="shelf">
+    <thead><tr><th scope="col">Item</th><th scope="col" class="num">Uses</th><th scope="col">Recipes</th><th scope="col">Notes</th></tr></thead>
+    <tbody><tr class="once"><th scope="row">Apricot jam</th><td class="num">1</td><td><a href="#southafrica">Bobotie</a></td><td>Everyday breakfast jam; nothing to buy specially.</td></tr>
+<tr><th scope="row">Bay leaves</th><td class="num">1</td><td><a href="#southafrica">Bobotie</a></td><td></td></tr>
+<tr class="once"><th scope="row">Black olives</th><td class="num">1</td><td><a href="#chile">Pastel de choclo</a></td><td>Leave them out; the pie loses its salty notes.</td></tr>
+<tr><th scope="row">Black pepper</th><td class="num">7</td><td><a href="#chile">Pastel de choclo</a>, <a href="#poland">Kotlety mielone</a>, <a href="#egypt">Hawawshi</a>, <a href="#southafrica">Bobotie</a>, <a href="#iran">Kotlet</a>, <a href="#pakistan">Qeema matar</a>, <a href="#vietnam">Xíu mại</a></td><td></td></tr>
+<tr><th scope="row">Butter</th><td class="num">3</td><td><a href="#chile">Pastel de choclo</a>, <a href="#poland">Kotlety mielone</a>, <a href="#egypt">Hawawshi</a></td><td></td></tr>
+<tr class="once"><th scope="row">Cayenne pepper</th><td class="num">1</td><td><a href="#pakistan">Qeema matar</a></td><td>Chilli flakes, ground fine.</td></tr>
+<tr class="once"><th scope="row">Chicken stock</th><td class="num">1</td><td><a href="#china">Clear-braised lion's head</a></td><td>Water and an extra ½ tsp salt make a thinner broth.</td></tr>
+<tr><th scope="row">Chilli flakes</th><td class="num">1</td><td><a href="#egypt">Hawawshi</a></td><td></td></tr>
+<tr><th scope="row">Chipotles in adobo</th><td class="num">1</td><td><a href="#mexico">Picadillo</a></td><td>Already on the shelf from <i>Ten Weeknights</i>.</td></tr>
+<tr><th scope="row">Cornflour (cornstarch)</th><td class="num">2</td><td><a href="#china">Clear-braised lion's head</a>, <a href="#vietnam">Xíu mại</a></td><td></td></tr>
+<tr><th scope="row">Cumin seeds</th><td class="num">1</td><td><a href="#pakistan">Qeema matar</a></td><td>Already on the shelf from <i>Ten Weeknights</i>.</td></tr>
+<tr class="once"><th scope="row">Curry powder</th><td class="num">1</td><td><a href="#southafrica">Bobotie</a></td><td>No swap: bobotie is built on it, and it keeps for a year.</td></tr>
+<tr class="once"><th scope="row">Dried marjoram</th><td class="num">1</td><td><a href="#poland">Kotlety mielone</a></td><td>Dried oregano, already on the shelf, is the swap.</td></tr>
+<tr><th scope="row">Dried oregano</th><td class="num">1</td><td><a href="#chile">Pastel de choclo</a></td><td></td></tr>
+<tr><th scope="row">Fish sauce</th><td class="num">1</td><td><a href="#vietnam">Xíu mại</a></td><td>Already on the shelf from <i>Ten Weeknights</i>.</td></tr>
+<tr><th scope="row">Frozen peas</th><td class="num">3</td><td><a href="#mexico">Picadillo</a>, <a href="#pakistan">Qeema matar</a>, <a href="#japan">Tori soboro don</a></td><td></td></tr>
+<tr><th scope="row">Frozen sweetcorn</th><td class="num">1</td><td><a href="#chile">Pastel de choclo</a></td><td></td></tr>
+<tr><th scope="row">Garam masala</th><td class="num">1</td><td><a href="#pakistan">Qeema matar</a></td><td>Already on the shelf from <i>Ten Weeknights</i>.</td></tr>
+<tr class="once"><th scope="row">Ground cinnamon</th><td class="num">1</td><td><a href="#iran">Kotlet</a></td><td>Optional in kotlet; leave it out.</td></tr>
+<tr><th scope="row">Ground coriander</th><td class="num">2</td><td><a href="#egypt">Hawawshi</a>, <a href="#pakistan">Qeema matar</a></td><td></td></tr>
+<tr><th scope="row">Ground cumin</th><td class="num">2</td><td><a href="#chile">Pastel de choclo</a>, <a href="#egypt">Hawawshi</a></td><td></td></tr>
+<tr><th scope="row">Ground turmeric</th><td class="num">3</td><td><a href="#southafrica">Bobotie</a>, <a href="#iran">Kotlet</a>, <a href="#pakistan">Qeema matar</a></td><td></td></tr>
+<tr class="once"><th scope="row">Ground white pepper</th><td class="num">1</td><td><a href="#china">Clear-braised lion's head</a></td><td>Black pepper works; it shows as specks.</td></tr>
+<tr><th scope="row">Milk</th><td class="num">3</td><td><a href="#chile">Pastel de choclo</a>, <a href="#poland">Kotlety mielone</a>, <a href="#southafrica">Bobotie</a></td><td></td></tr>
+<tr><th scope="row">Mirin</th><td class="num">1</td><td><a href="#japan">Tori soboro don</a></td><td>Already on the shelf from <i>Ten Weeknights</i>.</td></tr>
+<tr><th scope="row">Plain (all-purpose) flour</th><td class="num">1</td><td><a href="#iran">Kotlet</a></td><td></td></tr>
+<tr><th scope="row">Plain dry breadcrumbs</th><td class="num">2</td><td><a href="#poland">Kotlety mielone</a>, <a href="#iran">Kotlet</a></td><td></td></tr>
+<tr><th scope="row">Plain yoghurt</th><td class="num">1</td><td><a href="#pakistan">Qeema matar</a></td><td></td></tr>
+<tr><th scope="row">Raisins</th><td class="num">2</td><td><a href="#chile">Pastel de choclo</a>, <a href="#southafrica">Bobotie</a></td><td></td></tr>
+<tr><th scope="row">Rice</th><td class="num">4</td><td><a href="#southafrica">Bobotie</a>, <a href="#pakistan">Qeema matar</a>, <a href="#china">Clear-braised lion's head</a>, <a href="#japan">Tori soboro don</a></td><td></td></tr>
+<tr><th scope="row">Sake (or dry sherry)</th><td class="num">2</td><td><a href="#china">Clear-braised lion's head</a>, <a href="#japan">Tori soboro don</a></td><td>Already on the shelf from <i>Ten Weeknights</i>.</td></tr>
+<tr><th scope="row">Salt</th><td class="num">10</td><td><a href="#mexico">Picadillo</a>, <a href="#chile">Pastel de choclo</a>, <a href="#poland">Kotlety mielone</a>, <a href="#egypt">Hawawshi</a>, <a href="#southafrica">Bobotie</a>, <a href="#iran">Kotlet</a>, <a href="#pakistan">Qeema matar</a>, <a href="#china">Clear-braised lion's head</a>, <a href="#vietnam">Xíu mại</a>, <a href="#japan">Tori soboro don</a></td><td></td></tr>
+<tr><th scope="row">Sour cream</th><td class="num">1</td><td><a href="#poland">Kotlety mielone</a></td><td></td></tr>
+<tr><th scope="row">Soy sauce</th><td class="num">2</td><td><a href="#china">Clear-braised lion's head</a>, <a href="#japan">Tori soboro don</a></td><td></td></tr>
+<tr><th scope="row">Sugar</th><td class="num">4</td><td><a href="#chile">Pastel de choclo</a>, <a href="#china">Clear-braised lion's head</a>, <a href="#vietnam">Xíu mại</a>, <a href="#japan">Tori soboro don</a></td><td></td></tr>
+<tr><th scope="row">Sweet paprika</th><td class="num">2</td><td><a href="#chile">Pastel de choclo</a>, <a href="#pakistan">Qeema matar</a></td><td></td></tr>
+<tr><th scope="row">Tahini</th><td class="num">1</td><td><a href="#egypt">Hawawshi</a></td><td>Already on the shelf from <i>Ten Weeknights</i>.</td></tr>
+<tr><th scope="row">Toasted sesame oil</th><td class="num">1</td><td><a href="#vietnam">Xíu mại</a></td><td>Already on the shelf from <i>Ten Weeknights</i>.</td></tr>
+<tr><th scope="row">Tomato paste</th><td class="num">1</td><td><a href="#egypt">Hawawshi</a></td><td></td></tr>
+<tr><th scope="row">Vegetable oil</th><td class="num">8</td><td><a href="#mexico">Picadillo</a>, <a href="#chile">Pastel de choclo</a>, <a href="#poland">Kotlety mielone</a>, <a href="#southafrica">Bobotie</a>, <a href="#iran">Kotlet</a>, <a href="#pakistan">Qeema matar</a>, <a href="#vietnam">Xíu mại</a>, <a href="#japan">Tori soboro don</a></td><td></td></tr></tbody>
+  </table>
+  </div>
+</section>
+
+<section class="back" id="clock" aria-labelledby="clock-h">
+  <h2 id="clock-h">Where the clock won</h2>
+  <p class="lede">Every place this book shortens or simplifies the dish as it is cooked at home.</p>
+  <ul class="clock"><li><a href="#mexico">Picadillo</a> <span class="mx-c">Mexico</span> — The potato and carrot cook in the sauce. Grupo Animal boils them separately first and adds tomato purée; here the tomatoes are grated straight in.<sup class="ref"><a href="#src-10" aria-label="Source 10">10</a></sup></li><li><a href="#chile">Pastel de choclo</a> <span class="mx-c">Chile</span> — Frozen US sweetcorn stands in for fresh Chilean corn, and the pie is baked in one dish rather than the individual clay dishes some households use.</li><li><a href="#egypt">Hawawshi</a> <span class="mx-c">Egypt</span> — US pitta stands in for Egyptian baladi bread and bakes a little softer.</li><li><a href="#southafrica">Bobotie</a> <span class="mx-c">South Africa</span> — Apricot jam and lemon replace the chutney-and-jam mix, and the bobotie bakes in the skillet the filling was cooked in.</li><li><a href="#iran">Kotlet</a> <span class="mx-c">Iran</span> — The potato is grated raw instead of boiled and cooled first, which saves about half an hour.</li><li><a href="#pakistan">Qeema matar</a> <span class="mx-c">Pakistan</span> — Paprika and cayenne replace South Asian red chilli powder, and the covered simmer is shorter than Tea for Turmeric's.</li><li><a href="#china">Clear-braised lion's head</a> <span class="mx-c">China</span> — Traditional lion's head uses hand-chopped pork with about half fat.<sup class="ref"><a href="#src-24" aria-label="Source 24">24</a></sup> Supermarket mince is finer and leaner, so the meatballs are denser. Jicama stands in for water chestnut.</li><li><a href="#vietnam">Xíu mại</a> <span class="mx-c">Vietnam</span> — VnExpress steams the meatballs before they go into the sauce.<sup class="ref"><a href="#src-25" aria-label="Source 25">25</a></sup> Here they cook raw in the sauce, which saves the steamer and a pan. The prawns are optional.</li></ul>
+  <p class="small"><a href="#poland">Kotlety mielone</a>, <a href="#japan">Tori soboro don</a> are cooked the way they are at home.</p>
+</section>
+
+<section class="back" id="sources" aria-labelledby="sources-h">
+  <h2 id="sources-h">Sources</h2>
+  <ol class="sources"><li id="src-1"><a href="https://www.fsis.usda.gov/es/node/3293" rel="noopener">USDA FSIS, Safe minimum internal temperature chart</a></li>
+<li id="src-2"><a href="https://www.foodsafety.gov/food-safety-charts/cold-food-storage-charts" rel="noopener">FoodSafety.gov, Cold food storage charts</a></li>
+<li id="src-3"><a href="https://www.bls.gov/regions/mid-atlantic/data/averageretailfoodandenergyprices_usandsouth_table.htm" rel="noopener">U.S. Bureau of Labor Statistics, Average retail food and energy prices, U.S. and South region</a></li>
+<li id="src-4"><a href="https://www.ams.usda.gov/mnreports/ams_2868.pdf" rel="noopener">USDA AMS, Weekly Grocery Store Pork Feature Activity (AMS 2868)</a></li>
+<li id="src-5"><a href="https://www.ams.usda.gov/mnreports/AMS_2756.pdf" rel="noopener">USDA AMS, Weekly Grocery Store Chicken Feature Activity (AMS 2756)</a></li>
+<li id="src-6"><a href="https://www.beefmagazine.com/market-news/the-hamburger-story" rel="noopener">Derrell Peel, &quot;The Hamburger Story&quot;, BEEF Magazine, 30 April 2026</a></li>
+<li id="src-7"><a href="https://animalscience.tamu.edu/?p=23291" rel="noopener">Texas A&amp;M Department of Animal Science, &quot;Making Some Sense Out of Ground Beef Labeling&quot;</a></li>
+<li id="src-8"><a href="https://en.wikipedia.org/wiki/Meat_grinder" rel="noopener">Wikipedia, Meat grinder</a></li>
+<li id="src-9"><a href="https://dle.rae.es/picadillo" rel="noopener">Real Academia Española, Diccionario de la lengua española: picadillo</a></li>
+<li id="src-10"><a href="https://grupoanimal.mx/gastronomia/recetas/como-hacer-picadillo-de-carne-molida-receta-mexicana" rel="noopener">Grupo Animal, Cómo hacer picadillo de carne molida</a></li>
+<li id="src-11"><a href="https://en.wikipedia.org/wiki/Pastel_de_choclo" rel="noopener">Wikipedia, Pastel de choclo</a></li>
+<li id="src-12"><a href="https://www.eldinamo.cl/mundo/2023/05/24/con-o-sin-azucar-el-pastel-de-choclo-es-elegido-como-el-mejor-guiso-del-mundo/" rel="noopener">El Dínamo, &quot;Con o sin azúcar: el pastel de choclo es elegido como el mejor guiso del mundo&quot;, May 2023</a></li>
+<li id="src-13"><a href="https://culture.pl/en/article/10-most-popular-polish-meat-dishes" rel="noopener">Culture.pl, &quot;10 Most Popular Polish Meat Dishes&quot;</a></li>
+<li id="src-14"><a href="https://www.polonist.com/kotlety-mielone-pork-patties/" rel="noopener">Polonist, Kotlety mielone (pork patties)</a></li>
+<li id="src-15"><a href="https://en.wikipedia.org/wiki/Cutlet" rel="noopener">Wikipedia, Cutlet</a></li>
+<li id="src-16"><a href="https://egyptianstreets.com/2021/10/01/exploring-the-history-of-the-egyptian-burger-hawawshi/" rel="noopener">Egyptian Streets, &quot;Exploring the History of the Egyptian Burger: Hawawshi&quot;, October 2021</a></li>
+<li id="src-17"><a href="https://mawdoo3.com/%D8%B7%D8%B1%D9%8A%D9%82%D8%A9_%D8%B9%D9%85%D9%84_%D8%A7%D9%84%D8%AD%D9%88%D8%A7%D9%88%D8%B4%D9%8A_%D9%81%D9%8A_%D8%A7%D9%84%D8%A8%D9%8A%D8%AA" rel="noopener">Mawdoo3, طريقة عمل الحواوشي في البيت (hawawshi at home)</a></li>
+<li id="src-18"><a href="https://en.wikipedia.org/wiki/Bobotie" rel="noopener">Wikipedia, Bobotie</a></li>
+<li id="src-19"><a href="https://www.sun.ac.za/english/SUInternational/Pages/Bobotie-Master-Class.aspx" rel="noopener">Stellenbosch University International, &quot;How to make Bobotie&quot;</a></li>
+<li id="src-20"><a href="https://labsalliebe.com/en/kotlet-persian-meat-and-potato-patties/" rel="noopener">Labsalliebe, Kotlet: Persian meat and potato patties</a></li>
+<li id="src-21"><a href="https://en.wikipedia.org/wiki/Keema_matar" rel="noopener">Wikipedia, Keema matar</a></li>
+<li id="src-22"><a href="https://www.teaforturmeric.com/keema-matar/" rel="noopener">Tea for Turmeric, Keema matar (ground beef curry with peas)</a></li>
+<li id="src-23"><a href="https://en.wikipedia.org/wiki/Lion%27s_Head_(food)" rel="noopener">Wikipedia, Lion&#x27;s Head (food)</a></li>
+<li id="src-24"><a href="https://www.chinasichuanfood.com/?p=5502" rel="noopener">China Sichuan Food, Lion&#x27;s head meatballs</a></li>
+<li id="src-25"><a href="https://vnexpress.net/mon-xiu-mai-chi-can-30-phut-4298426.html" rel="noopener">VnExpress, Món xíu mại chỉ cần 30 phút</a></li>
+<li id="src-26"><a href="https://www.dienmayxanh.com/vao-bep/xiu-mai-la-gi-nguon-goc-va-cach-lam-xiu-mai-thom-ngon-don-17378" rel="noopener">Điện máy XANH, Xíu mại là gì? Nguồn gốc và cách làm</a></li>
+<li id="src-27"><a href="https://www.justonecookbook.com/recipes/tori-soboro-donburi/" rel="noopener">Just One Cookbook, Tori soboro donburi</a></li></ol>
+</section>
+
+<footer class="foot">ONE POUND · ten kitchens · one pound feeds four · prices computed 20 October 2026 · a companion to <i>Ten Weeknights</i>, <i>Ten Lunches</i>, <i>One Bird</i> and <i>The Heavy Pot</i></footer>
+</main>
+
+<script>(function(){
+  // 1 lb / 2 lb toggle
+  var buttons = document.querySelectorAll('.toggle button');
+  function setWeight(w){
+    var two = w === 2;
+    document.body.classList.toggle('two', two);
+    buttons.forEach(function(b){ b.setAttribute('aria-pressed', String(+b.dataset.w === w)); });
+    document.querySelectorAll('[data-a]').forEach(function(el){ el.textContent = two ? el.dataset.b : el.dataset.a; });
+    document.querySelectorAll('.w1,.c1').forEach(function(el){ el.hidden = two; });
+    document.querySelectorAll('.w2,.c2').forEach(function(el){ el.hidden = !two; });
+    try { localStorage.setItem('onepound-weight', String(w)); } catch(e) {}
+  }
+  buttons.forEach(function(b){ b.addEventListener('click', function(){ setWeight(+b.dataset.w); }); });
+  try { if (localStorage.getItem('onepound-weight') === '2') setWeight(2); } catch(e) {}
+
+  // contents filters
+  var fp = document.getElementById('f-protein'), ft = document.getElementById('f-tier'), fv = document.getElementById('f-vessel');
+  var rows = document.querySelectorAll('#matrix tbody tr');
+  var count = document.getElementById('count'), empty = document.getElementById('empty');
+  function filter(){
+    var n = 0;
+    rows.forEach(function(r){
+      var ok = (!fp.value || r.dataset.protein === fp.value) &&
+               (!ft.value || r.dataset.tier === ft.value) &&
+               (!fv.value || r.dataset.vessel === fv.value);
+      r.hidden = !ok; if (ok) n++;
+    });
+    count.textContent = n + ' of ' + rows.length + ' recipes';
+    empty.hidden = n !== 0;
+  }
+  [fp, ft, fv].forEach(function(s){ s.addEventListener('change', filter); });
+  document.getElementById('filters').addEventListener('submit', function(e){ e.preventDefault(); });
+})();
+</script>
+</body>
+</html>
